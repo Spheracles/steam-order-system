@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-r/1CSzIUH0v0uBBjzQiNGLqpFMZaq0SRqml22AU6CUA=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-dhbm/DptUGHX1hMgKpbOuyYj7622ibVQfirTZo8c1WI=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="蒸汽式智慧訂單管理系統：在瀏覽器內匯入訂單、產品與客戶 Excel／CSV，用中文對話查詢、統計銷量與交叉分析。資料不上傳。">
@@ -5939,12 +5939,19 @@ function trendInsights(T,R){
   const lab=d=>`${mdOf(d.date)}（${wdOf(d.date)}）`;
   obs.push(`期間 ${ymd(T.days[0].date)}～${ymd(T.days[T.days.length-1].date)}，有資料 ${have.length} 天${miss.length?`、無資料 ${miss.length} 天`:''}；合計完成量 ${fmt(T.tot.done)}${u}、不良量 ${fmt(T.tot.ng)}${u}，整體不良率 ${pct2(T.tot.rate)}（${fmt(T.tot.ng)} ÷ ${fmt(T.tot.done)}）。`);
   if(have.length>=2){
-    const byDone=[...have].sort((a,b)=>b.done-a.done);
-    obs.push(`完成量最高是 ${lab(byDone[0])} ${fmt(byDone[0].done)}${u}，最低是 ${lab(byDone[byDone.length-1])} ${fmt(byDone[byDone.length-1].done)}${u}。`);
+    // 並列時列出所有同值的日子，不只挑第一個
+    const ties=(arr,f,v)=>arr.filter(d=>Math.abs(f(d)-v)<1e-9);
+    const tieTxt=list=>list.slice(0,4).map(lab).join('、')+(list.length>4?`等 ${list.length} 天`:'')+(list.length>1?'（並列）':'');
+    const mxD=Math.max(...have.map(d=>d.done)), mnD=Math.min(...have.map(d=>d.done));
+    if(mxD===mnD) obs.push(`每天完成量都是 ${fmt(mxD)}${u}。`);
+    else obs.push(`完成量最高是 ${tieTxt(ties(have,d=>d.done,mxD))} ${fmt(mxD)}${u}，最低是 ${tieTxt(ties(have,d=>d.done,mnD))} ${fmt(mnD)}${u}。`);
     const rated=have.filter(d=>d.rate!=null).sort((a,b)=>b.rate-a.rate);
     if(rated.length>=2){
       const hi=rated[0], lo=rated[rated.length-1];
-      obs.push(`不良率最高是 ${lab(hi)} ${pct2(hi.rate)}（${fmt(hi.ng)} ÷ ${fmt(hi.done)}），最低是 ${lab(lo)} ${pct2(lo.rate)}（${fmt(lo.ng)} ÷ ${fmt(lo.done)}）。`);
+      const hiT=ties(rated,d=>d.rate,hi.rate), loT=ties(rated,d=>d.rate,lo.rate);
+      const one=(L,d)=>L.length>1?`${tieTxt(L)} ${pct2(d.rate)}`:`${lab(d)} ${pct2(d.rate)}（${fmt(d.ng)} ÷ ${fmt(d.done)}）`;
+      if(hi.rate===lo.rate) obs.push(`每天不良率都是 ${pct2(hi.rate)}。`);
+      else obs.push(`不良率最高是 ${one(hiT,hi)}，最低是 ${one(loT,lo)}。`);
       const above=rated.filter(d=>T.tot.rate!=null&&d.rate>T.tot.rate).sort((a,b)=>a.date.localeCompare(b.date));
       if(above.length&&above.length<rated.length) obs.push(`不良率高於整體 ${pct2(T.tot.rate)} 的有 ${above.length} 天：${above.slice(0,6).map(d=>`${mdOf(d.date)} ${pct2(d.rate)}`).join('、')}${above.length>6?'…':''}。`);
       // 拆到產線：最高那天的不良量主要來自哪條產線
@@ -6045,7 +6052,8 @@ function trendSVG(T,theme='dark',opt={}){
   svg.append(bars);
   // 選擇性直接標示：完成量最高、最低
   if(!byLine){const hv=T.days.filter(d=>!d.missing);if(hv.length>=2){const mx=hv.reduce((a,b)=>b.done>a.done?b:a),mn=hv.reduce((a,b)=>b.done<a.done?b:a);
-    for(const [d,t] of [[mx,'最高'],[mn,'最低']]){const i=T.days.indexOf(d);svg.append(tsv('text',{x:cx(i),y:y1(d.done)-7,'text-anchor':'middle',fill:C.text,'font-size':11,'font-weight':700},`${t} ${fmt(d.done)}`));}}}
+    const nT=v=>hv.filter(x=>x.done===v).length;
+    if(mx.done!==mn.done) for(const [d,t] of [[mx,nT(mx.done)>1?'最高（並列）':'最高'],[mn,nT(mn.done)>1?'最低（並列）':'最低']]){const i=T.days.indexOf(d);svg.append(tsv('text',{x:cx(i),y:y1(d.done)-7,'text-anchor':'middle',fill:C.text,'font-size':11,'font-weight':700},`${t} ${fmt(d.done)}`));}}}
   // 折線：缺資料的日子斷開
   const drawLine=(vals,color,key,label,dash)=>{
     let path='',pen=false;
