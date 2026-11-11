@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-9RNEaIxjg2QcN45O9Va/1Ud4rEUaFcoolRQNf7uZRrs=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-TbFio6o3YrmbIEeTK8DgdyrAGLJjRNNYDVsAgh5Js9M=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="蒸汽式智慧訂單管理系統：在瀏覽器內匯入訂單、產品與客戶 Excel／CSV，用中文對話查詢、統計銷量與交叉分析。資料不上傳。">
@@ -1132,6 +1132,49 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
   body.print-mgmt .mg-page .mg-acts td:nth-child(3){width:10.5em}body.print-mgmt .mg-page .mg-acts td:nth-child(4){width:6em}body.print-mgmt .mg-page .mg-acts td:nth-child(5){width:6.6em}
   .mg-page .mg-ref,.mg-page .mg-area{border-color:#999!important}
 }
+/* ===================== v16 操作指導 ===================== */
+.slip.guide{background-color:#eef0e4}
+.slip.guide .stamp{color:#1e4e78}
+.slip .slip-go{display:block;width:100%;margin:8px 0 4px;min-height:34px;padding:5px 10px;font-size:.84rem}
+.slip-steps{list-style:none;margin:4px 0 0;padding:0;font-size:.8rem;line-height:1.45}
+.slip-steps li{display:flex;gap:6px;padding:1px 0;border-bottom:1px dotted rgba(60,45,25,.3)}
+.slip-steps .mk{flex:none;width:1.1em;text-align:center;font-weight:700}
+.slip-steps .st-done{color:#2f5e38}.slip-steps .st-warn{color:#8a2a1c;font-weight:700}.slip-steps .st-blocked{color:#5f554a}.slip-steps .st-optional{color:#4a4436}
+.guide-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px}
+.guide-bar .tiny{flex:1 1 260px;color:var(--paper-dim)}
+.guide-coach{position:fixed;left:16px;bottom:16px;z-index:45;width:min(380px,calc(100vw - 32px));color:#f5ebd3}
+.guide-coach .gc-box{padding:12px 14px 12px;border-radius:12px;background:linear-gradient(180deg,#2c3a33,#1e2824);box-shadow:0 0 0 2px #3e280a,0 0 0 4px #c8963f,0 12px 28px rgba(0,0,0,.6)}
+.guide-coach header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.guide-coach header b{font:700 .98rem var(--f-serif);color:#ffe9b0;letter-spacing:.08em}
+.guide-coach header span{font-size:.8rem;color:#e6dcc4;margin-right:auto}
+.gc-x{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;color:#f0e2c0;font-size:1.15rem;line-height:1}
+.gc-x:hover{background:rgba(255,255,255,.08)}.gc-x:focus-visible{outline:2px solid #ffe9b0}
+.gc-goal{margin:0 0 6px;font-size:.78rem;color:#d8cdb2}
+.gc-step{padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.25);border:1px solid rgba(232,223,203,.14)}
+.gc-step b{display:block;font-size:.96rem;line-height:1.4;color:#fff3d6;margin:2px 0}
+.gc-step p{margin:2px 0 0;font-size:.84rem;line-height:1.55;color:#ece2ca}
+.gc-note:empty{display:none}.gc-note{color:#ffe08a!important}
+.gc-status{display:inline-block;padding:0 8px;border-radius:10px;font-size:.76rem;line-height:1.6;background:#3b4a42;color:#e8f2e4}
+.gc-status.st-done{background:#2f5e38;color:#eaf7e6}.gc-status.st-warn{background:#8a2a1c;color:#fff0ea}.gc-status.st-blocked{background:#4a463e;color:#efe8d8}.gc-status.st-optional{background:#4b4430;color:#f6ecd2}
+.gc-btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.gc-btns button{flex:1 1 auto}
+.gc-all{margin-top:8px;font-size:.82rem}
+.gc-all summary{cursor:pointer;color:#e6dcc4}
+.gc-all ol{list-style:none;margin:6px 0 0;padding:0;max-height:180px;overflow:auto}
+.gc-all li button{all:unset;cursor:pointer;display:block;width:100%;box-sizing:border-box;padding:4px 6px;border-radius:4px;color:#ece2ca;font-size:.82rem;line-height:1.45}
+.gc-all li button:hover,.gc-all li button:focus-visible{background:rgba(255,255,255,.08);outline:1px solid #c8963f}
+.gc-all li.cur button{background:rgba(200,150,63,.25);color:#fff3d6;font-weight:700}
+.gc-all li.st-done button{color:#bfe0b8}.gc-all li.st-warn button{color:#ffc2b4}
+.gc-pill{display:none}
+.guide-coach.min .gc-box{display:none}
+.guide-coach.min .gc-pill{display:inline-flex}
+.guide-coach.min{width:auto}
+.guide-hl{outline:3px solid #ffd27a!important;outline-offset:4px;box-shadow:0 0 0 7px rgba(255,210,122,.32)!important;border-radius:4px;animation:ghl 1.1s ease-in-out 4}
+@keyframes ghl{50%{outline-color:#ff9f2a;box-shadow:0 0 0 11px rgba(255,159,42,.18)}}
+@media (prefers-reduced-motion:reduce){.guide-hl{animation:none}}
+body.motion-minimal .guide-hl{animation:none}
+@media (max-width:760px){.guide-coach{left:8px;right:8px;bottom:8px;width:auto}.gc-step p{font-size:.82rem}.gc-all ol{max-height:120px}}
+@media print{.guide-coach,.guide-bar,.slip .slip-go{display:none!important}}
 
 </style>
 </head>
@@ -1197,7 +1240,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
       <section class="deck" id="console" aria-labelledby="consoleTitle">
         <div class="bay type-bay cab">
           <div class="cab-plate"><b id="consoleTitle">智慧對話式查詢控制台</b><span>COMMAND &amp; QUERY CONSOLE</span></div>
-          <p class="lede">直接輸入你想查詢的訂單資訊，系統會協助你完成篩選與統計。可以用電腦鍵盤，也可以點打字機上的按鍵輸入（「輸入切換」可換成英文）。輸入後拉下主啟動桿執行。本機中文規則解析，不連線雲端 AI。</p>
+          <p class="lede">直接輸入你想查詢的訂單資訊，系統會協助你完成篩選與統計；也可以說想要什麼成果與檔案格式（例如「產出一份圖文並茂的管理摘要」），印刷機會印出操作指導單，一步一步帶你操作。可以用電腦鍵盤，也可以點打字機上的按鍵輸入（「輸入切換」可換成英文）。輸入後拉下主啟動桿執行。本機中文規則解析，不連線雲端 AI。</p>
           <div class="typewriter">
             <div class="tape" id="tape" aria-hidden="true"><span id="tapeText">› 等待指令</span></div>
             <div class="teletype">
@@ -1218,6 +1261,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
           <div class="parsed" id="nlParsed" aria-live="polite"><span class="label">已辨識</span><span id="nlParsedText" class="muted">（尚未送出指令）</span></div>
           <div class="applied" aria-live="polite"><span class="label">目前條件</span><span id="appliedChips" class="btn-row"><span class="muted small">尚未設定任何條件，顯示全部訂單</span></span><button type="button" class="ghost small" id="clearAllFilters" style="margin-left:auto">一鍵清除條件</button></div>
           <div id="nlReply" class="reply" role="status" aria-live="polite">請先在下方「資料匯入」選擇公司資料檔（一個 .xlsx，或一次選三個 CSV）。匯入後就能在這裡用中文提問。</div>
+          <div class="guide-bar" id="nlGuideBar" hidden><button type="button" id="nlGuideStart">▶ 開始逐步指導</button><span class="tiny">一步一步帶你到網頁上對應的按鈕；系統只指導、標示位置，不會替你匯入、下載或修改資料。</span></div>
           <div class="console-foot">
             <div class="btn-row"><button type="button" class="steel small" data-jump="orders">跳到結果表格</button><button type="button" class="steel small" data-jump="sales">跳到分析圖表</button><button type="button" class="steel small" data-jump="cross">跳到客戶×產品</button></div>
             <div class="history" id="nlHistory" aria-label="最近查詢"></div>
@@ -1554,6 +1598,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
         <li>要核對出貨：在「訂單與出貨交叉核對」選出貨紀錄檔（需有出貨編號、訂單編號、出貨數量），系統以訂單編號對照、依出貨編號去重後加總，列出未出貨、部分出貨、全部出貨、出貨超量與單位不一致。</li>
         <li>要合併生產日報：在「資料匯入」選含日報工作表的 Excel（或多個日報 CSV），到「多檔彙整」確認工作表與欄位、處理衝突，再匯出明細、彙總表與異常清單。</li>
         <li>要給主管看：核對完成後到「管理摘要」，系統把彙總結果整理成一頁（已知事實／待查問題／建議行動），可填負責人與確認期限，再列印成 PDF 或下載 Markdown。原因沒有資料來源時只列為待查問題。</li>
+        <li>不知道從哪裡開始：在最上方控制台說出想要的成果與格式（例如「根據匯入的資料數據，產出一份圖文並茂的管理摘要」「把尚未出貨的訂單匯出成 Excel」），拉下主啟動桿，印刷機會印出操作指導單；按「開始逐步指導」，系統會依目前匯入的資料一步一步帶你到對應的按鈕，並推薦呈現形式與檔案格式。系統只指導、不會替你匯入或下載。</li>
         <li>資料會自動保存在這個瀏覽器；要帶到別台電腦，請到「匯出與備份」下載 JSON 備份，再從「資料匯入」選擇這個備份檔還原。</li>
       </ol></div>
       <div class="inset"><h3>控制台可以這樣問</h3><ul>
@@ -1582,7 +1627,17 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
     </div>
   </section>
 </main>
-<footer>蒸汽式智慧訂單管理系統 v15.0（VI-OMS MARK VIII） ／ Steam-Powered Intelligent Order Management System ／ 本機優先、離線可用 ／ 內含 JSZip 3.10.1（MIT）與 pdf.js 6.2.108（Apache-2.0）</footer>
+<footer>蒸汽式智慧訂單管理系統 v16.0（VI-OMS MARK VIII） ／ Steam-Powered Intelligent Order Management System ／ 本機優先、離線可用 ／ 內含 JSZip 3.10.1（MIT）與 pdf.js 6.2.108（Apache-2.0）</footer>
+<aside class="guide-coach" id="guideCoach" role="region" aria-label="操作指導" hidden>
+  <button type="button" class="gc-pill" id="gcPill">操作指導</button>
+  <div class="gc-box">
+    <header><b>操作指導</b><span id="gcProg"></span><button type="button" class="gc-x" id="gcMin" aria-label="收合操作指導" title="收合">–</button><button type="button" class="gc-x" id="gcClose" aria-label="結束操作指導" title="結束">×</button></header>
+    <p class="gc-goal" id="gcGoal"></p>
+    <div class="gc-step" aria-live="polite"><span class="gc-status" id="gcStatus"></span><b id="gcTitle2"></b><p id="gcDetail"></p><p class="gc-note" id="gcNote"></p></div>
+    <div class="gc-btns"><button type="button" class="steel small" id="gcPrev">‹ 上一步</button><button type="button" class="small" id="gcGo">帶我去</button><button type="button" class="steel small" id="gcCmd" hidden>代入指令</button><button type="button" class="steel small" id="gcNext">下一步 ›</button></div>
+    <details class="gc-all"><summary>全部步驟</summary><ol id="gcList"></ol></details>
+  </div>
+</aside>
 <div id="modalRoot"></div>
 <div id="busy" class="busy" hidden role="status" aria-live="polite"></div>
 
@@ -1617,7 +1672,7 @@ const PDF_CMAPS={"Adobe-CNS1-0": "AuBSQ29weXJpZ2h0IDE5OTAtMjAwOSBBZG9iZSBTeXN0ZW
      → applyFilters() → computeAnalytics() → 表格／卡片／圖表／交叉表共用結果
    自然語言查詢：QueryParser（可替換）→ ParsedQuery → executeQuery()
    ===================================================================== */
-const APP = {name:'蒸汽式智慧訂單管理系統', version:'15.0'};
+const APP = {name:'蒸汽式智慧訂單管理系統', version:'16.0'};
 const $ = id => document.getElementById(id);
 const NF = new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2});
 const NF0 = new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0});
@@ -4157,6 +4212,7 @@ function refresh(opts={}){
   state.lastRefreshMs=performance.now()-t0;
   Faders.sync();
   persistSoon();
+  try{guideRefresh();}catch(e){}   // 操作指導：條件變了就更新步驟狀態
 }
 const defaultDateField=()=>has('shipDate')?'ship':has('orderDate')?'order':has('actualShipDate')?'actual':'ship';
 function resetFilters(){state.filters=defaultFilters();state.filters.dateField=defaultDateField();syncFilterUI();}
@@ -4166,6 +4222,8 @@ async function runNL(text){
   text=str(text).trim();state.lastCompare=null;
   if(!text){reply('請先輸入想查詢的內容，例如訂單編號、「明天要出貨的訂單」或「哪一種產品訂購量最高？」','warn');$('nlInput').focus();return;}
   addHistory(text);
+  state.lastGuide=null;
+  if(typeof guideDetect==='function'&&guideDetect(text)){runGuide(text);return;}   // 「要怎麼做／要什麼檔案」→ 操作指導（不需要先有資料）
   if(!state.records.length){$('nlParsedText').textContent='（尚未匯入訂單資料，無法辨識）';reply('目前還沒有訂單資料可以查詢。請先在「資料匯入」選擇公司資料檔（.xlsx 或三個 CSV）。','warn');return;}
   const ints=state.records.every(r=>r.qty==null||Number.isInteger(r.qty));
   const ctx={today:todayLocal(),vocab:getVocab(),qtyIntegerOnly:ints};
@@ -4174,22 +4232,9 @@ async function runNL(text){
   state.lastParsed=P;showParsed(P);
   executeQuery(P);
 }
-function executeQuery(P){
-  state.lastCompare=null;
-  if(P.errors.length){reply('查詢條件有誤：'+P.errors.join(' ')+'\n請修正後再試一次，畫面沒有變動。','error');return;}
-  if(P.control==='clear'||P.control==='showAll'){
-    resetFilters();if(P.chart)state.ui.chart=P.chart;refresh();
-    reply(`${P.control==='clear'?'已清除所有篩選條件':'已顯示全部訂單'}，目前共 ${state.filtered.length.toLocaleString('zh-TW')} 筆訂單${has('qty')?`，總訂購數量 ${fmtQ(state.analytics)}`:''}。`);return;
-  }
-  const F=P.filters, I=P.intents;
-  const nFilters=['customer','customerId','product','sku','category','orderNo'].reduce((s,k)=>s+F[k].length,0)+['ship','date','qtyMin','qtyMax','pStatus','cStatus','anomaly'].filter(k=>F[k]!=null).length;
-  const nIntents=['top','sort'].filter(k=>I[k]).length+['count','sum','breakdown'].filter(k=>I[k]).length;
-  if(P.unknown.length){reply(`目前無法完整辨識這個查詢條件，請嘗試提供客戶名稱、產品名稱或日期。\n無法辨識的部分：「${P.unknown.join('」、「')}」——資料中沒有相符的客戶、產品、料號或訂單編號，因此沒有執行查詢，畫面維持原狀。`,'warn');return;}
-  if(!nFilters&&!nIntents){
-    if(P.chart){state.ui.chart=P.chart;renderAnalytics();reply(`已切換成${P.chart==='pie'?'圓餅圖':'長條圖'}，搜尋條件沒有改變。`);return;}
-    reply('目前無法完整辨識這個查詢條件，請嘗試提供客戶名稱、產品名稱或日期。','warn');return;
-  }
-  const need=[], notes=[...P.notes]; let dateField=null;
+/** 這個查詢需要、但目前資料沒有的欄位（executeQuery 與操作指導共用；不猜測） */
+function queryNeeds(P){
+  const F=P.filters, I=P.intents, need=[], notes=[]; let dateField=null;
   if(F.date){
     dateField=F.date.field||defaultDateField();
     if(!has(DATE_FIELD_MAP[dateField])){const alt=['ship','order','actual'].find(k=>has(DATE_FIELD_MAP[k]));if(alt){notes.push(`訂單沒有「${DATE_FIELD_LABEL[dateField]}」欄位，改用「${DATE_FIELD_LABEL[alt]}」。`);dateField=alt;}else need.push('日期欄位（預備出貨日期或訂單日期）');}
@@ -4207,6 +4252,24 @@ function executeQuery(P){
   if(((I.top&&I.top.metric!=='lines')||I.sum)&&!has('qty'))need.push('訂購數量（才能加總件數）');
   if(F.pStatus&&!state.sources.product)need.push('產品主檔');
   if(F.cStatus&&!state.sources.customer)need.push('客戶主檔');
+  return {need,notes,dateField};
+}
+function executeQuery(P){
+  state.lastCompare=null;
+  if(P.errors.length){reply('查詢條件有誤：'+P.errors.join(' ')+'\n請修正後再試一次，畫面沒有變動。','error');return;}
+  if(P.control==='clear'||P.control==='showAll'){
+    resetFilters();if(P.chart)state.ui.chart=P.chart;refresh();
+    reply(`${P.control==='clear'?'已清除所有篩選條件':'已顯示全部訂單'}，目前共 ${state.filtered.length.toLocaleString('zh-TW')} 筆訂單${has('qty')?`，總訂購數量 ${fmtQ(state.analytics)}`:''}。`);return;
+  }
+  const F=P.filters, I=P.intents;
+  const nFilters=['customer','customerId','product','sku','category','orderNo'].reduce((s,k)=>s+F[k].length,0)+['ship','date','qtyMin','qtyMax','pStatus','cStatus','anomaly'].filter(k=>F[k]!=null).length;
+  const nIntents=['top','sort'].filter(k=>I[k]).length+['count','sum','breakdown'].filter(k=>I[k]).length;
+  if(P.unknown.length){reply(`目前無法完整辨識這個查詢條件，請嘗試提供客戶名稱、產品名稱或日期。\n無法辨識的部分：「${P.unknown.join('」、「')}」——資料中沒有相符的客戶、產品、料號或訂單編號，因此沒有執行查詢，畫面維持原狀。`,'warn');return;}
+  if(!nFilters&&!nIntents){
+    if(P.chart){state.ui.chart=P.chart;renderAnalytics();reply(`已切換成${P.chart==='pie'?'圓餅圖':'長條圖'}，搜尋條件沒有改變。`);return;}
+    reply('目前無法完整辨識這個查詢條件，請嘗試提供客戶名稱、產品名稱或日期。','warn');return;
+  }
+  const Q=queryNeeds(P), need=Q.need, notes=[...P.notes,...Q.notes]; const dateField=Q.dateField;
   if(need.length){reply(`這個查詢需要以下資料，但目前沒有對應的欄位：${[...new Set(need)].join('、')}。\n請到「欄位對應」指定欄位，或匯入相關主檔後再試一次。系統不會用其他欄位猜測結果。`,'warn');return;}
   if(!P.keep){state.filters=defaultFilters();state.filters.dateField=defaultDateField();}
   const f=state.filters, join=a=>[...new Set(a)].join('、');
@@ -4337,6 +4400,7 @@ const EXAMPLES=[
   ['日期查詢',['明天有哪些訂單準備出貨？','列出下週預備出貨訂單','星期三要出貨的訂單','下週一到週三預備出貨的訂單','查詢下個月全部訂單','列出預備出貨日期尚未填寫的訂單']],
   ['期間比較',['11 月和 10 月比較','本週比上週成長多少？','11 月訂購量成長多少？']],
   ['控制指令',['清除所有篩選','顯示全部訂單','切換成圓餅圖','切換成長條圖']],
+  ['操作指導（要什麼成果、什麼格式）',['根據匯入的資料數據，產出一份圖文並茂的管理摘要','把尚未出貨的訂單匯出成 Excel','每日不良率要怎麼做成圖片放進簡報？','生產日報要怎麼合併成一份彙總表？','出貨核對結果要怎麼給主管看？','要怎麼備份資料帶到別台電腦？']],
 ];
 /** 依目前匯入的資料產生可直接點的範例（第一張訂單、訂購量最高的客戶與產品） */
 function dataExamples(){
@@ -4418,6 +4482,7 @@ function init(){
   renderImportSlots();renderMapping();buildExamples();bindFilters();bindControls();
   state.filters.dateField=defaultDateField();syncFilterUI();syncAnaControls();rebuild();renderHistory();
   initPersistence();consInit();shipInit();try{bindMgmt();renderMgmt();}catch(e){console.warn('管理摘要初始化失敗',e);}
+  try{bindGuide();}catch(e){console.warn('操作指導初始化失敗',e);}
   setTimeout(()=>{if(isHosted())getDownloads().then(ns=>{if(!ns)document.querySelectorAll('[data-export],#backupBtn,#exportRank,#exportCross,#exportAnom').forEach(b=>b.title='此預覽環境無法下載檔案，按下後可改用複製內容');});},0);
 }
 /** 建立 MARK VIII 機械控制臺；任何繪製失敗都不影響資料功能 */
@@ -4653,7 +4718,7 @@ const Machine={
     if(source!=='drag') Lever.autoPull();
     Lever.engaged();
     this.setState('STARTING');
-    let slip;state.lastReply=null;const t0=performance.now();
+    let slip;state.lastReply=null;state.lastGuide=null;const t0=performance.now();
     try{
       if(text) await runNL(text); else applyCurrent();
       this.lastMs=performance.now()-t0;
@@ -4667,7 +4732,7 @@ const Machine={
     return true;
   },
   async timeline(gen,slip){
-    const ok=slip.type==='ok', m=this.motion;
+    const ok=slip.type==='ok'||slip.type==='guide', m=this.motion;
     const alive=()=>gen===this.gen;
     if(m==='minimal'){Printer.print(slip,'none');this.setState(ok?'COMPLETE':'ERROR');Lever.reset(true);await wait(60);if(alive())this.setState('IDLE');return;}
     if(m==='reduced'){this.setState('COMPUTING');await wait(90);if(!alive())return;this.setState('PRINTING');Printer.print(slip,'fade');await wait(220);if(!alive())return;this.setState(ok?'COMPLETE':'ERROR');Lever.reset(false);await wait(260);if(alive())this.setState('IDLE');return;}
@@ -4697,6 +4762,7 @@ function buildSlip(cmd){
   const R=state.lastReply||{kind:'error',msg:'查詢沒有產生結果。'};
   const time=new Date().toLocaleString('zh-TW',{hour12:false});
   slipNo++;
+  if(state.lastGuide) return guideSlip(state.lastGuide,cmd,slipNo,time);
   if(R.kind!=='ok'){
     const m=R.msg||'';
     const need=/需要以下資料[^：]*：([^。\n]+)/.exec(m), first=need?need[1].split('、')[0].replace(/（.*?）/g,'').trim():'';
@@ -4725,17 +4791,19 @@ const Printer={
   print(slip,mode){
     const roll=$('slipRoll'); const el=document.createElement('article');
     el.className='slip '+slip.type;
-    const head=h('header',{},h('b',{text:'機械運算結果單'}),h('span',{text:`No. ${String(slip.no).padStart(4,'0')}`}));
+    const head=h('header',{},h('b',{text:slip.type==='guide'?'操作指導單':'機械運算結果單'}),h('span',{text:`No. ${String(slip.no).padStart(4,'0')}`}));
     el.append(head);
     const dl=h('dl');
     dl.append(h('dt',{text:'指令'}),h('dd',{text:slip.cmd}));
-    if(slip.type==='ok'||slip.type==='export'){for(const [k,v] of slip.rows)dl.append(h('dt',{text:k}),h('dd',{text:v}));}
+    if(slip.type==='ok'||slip.type==='export'||slip.type==='guide'){for(const [k,v] of slip.rows)dl.append(h('dt',{text:k}),h('dd',{text:v}));}
     else{dl.append(h('dt',{text:'查詢狀態'}),h('dd',{text:'失敗'}),h('dt',{text:'原因'}),h('dd',{text:slip.reason}),h('dt',{text:'說明'}),h('dd',{text:slip.detail}));}
-    el.append(dl,h('div',{class:'time',text:`報表時間：${slip.time}`}),h('div',{class:'stamp',text:slip.type==='ok'?'完成':slip.type==='export'?'已輸出':slip.reason}));
+    el.append(dl);
+    if(slip.type==='guide'&&slip.steps&&slip.steps.length){el.append(h('button',{type:'button',class:'slip-go','data-guide-start':'1',text:'▶ 開始逐步指導'}),h('ol',{class:'slip-steps'},...slip.steps.map(s=>h('li',{class:'st-'+s.status},h('span',{class:'mk','aria-hidden':'true',text:s.mark}),h('span',{class:'sr-only',text:s.statusText+'：'}),s.title))));}
+    el.append(h('div',{class:'time',text:`報表時間：${slip.time}`}),h('div',{class:'stamp',text:slip.type==='ok'?'完成':slip.type==='export'?'已輸出':slip.type==='guide'?slip.stamp:slip.reason}));
     let web=roll.querySelector('.slip-web');if(!web){web=h('div',{class:'slip-web'});roll.replaceChildren(web);}
     const prev=web.querySelector('.slip');
     if(prev&&prev.dataset.summary){this.history.unshift(prev.dataset.summary);this.history=this.history.slice(0,12);this.renderTray();}
-    el.dataset.summary=`No.${String(slip.no).padStart(4,'0')}｜${slip.type==='ok'?'完成':slip.type==='export'?'輸出':'失敗'}｜${slip.cmd.slice(0,24)}${slip.type==='ok'?'｜'+slip.rows[1][1]:''}`;
+    el.dataset.summary=`No.${String(slip.no).padStart(4,'0')}｜${slip.type==='ok'?'完成':slip.type==='export'?'輸出':slip.type==='guide'?'指導':'失敗'}｜${slip.cmd.slice(0,24)}${slip.type==='ok'?'｜'+slip.rows[1][1]:''}`;
     web.querySelectorAll('.slip').forEach(x=>x.classList.add('old'));web.prepend(el);
     while(web.children.length>4)web.lastElementChild.remove();
     const P=Machine.P;
@@ -7125,7 +7193,7 @@ function mgmtCompute(ctx){
 function mgCtx(){return {cons:Cons.result,consFiles:Cons.files,consAt:Cons.at,unit:Trend.unit,ship:Ship.result,shipFiles:Ship.files,shipAt:Ship.at,orderFiles:state.importInfo?.files,today:isoOf(todayLocal())};}
 async function mgLoad(){if(Mg.loaded)return;Mg.loaded=true;try{const o=await IDB.get('mgmt-ui');if(o&&o.edits&&typeof o.edits==='object'){for(const [k,v] of Object.entries(o.edits))if(v&&typeof v==='object')Mg.edits[String(k).slice(0,600)]={role:typeof v.role==='string'&&MG_ROLES.includes(v.role)?v.role:undefined,owner:typeof v.owner==='string'?v.owner.slice(0,40):'',due:/^\d{4}-\d{2}-\d{2}$/.test(v.due||'')?v.due:'',t:Number.isFinite(v.t)?v.t:0};renderMgmt();}}catch(e){}}
 function mgSave(){const ks=Object.keys(Mg.edits);if(ks.length>300){ks.sort((a,b)=>(Mg.edits[a].t||0)-(Mg.edits[b].t||0)).slice(0,ks.length-300).forEach(k=>delete Mg.edits[k]);}try{IDB.put('mgmt-ui',{edits:Mg.edits});}catch(e){}}
-function renderMgmt(){clearTimeout(Mg.pending);Mg.pending=setTimeout(renderMgmtNow,0);}
+function renderMgmt(){clearTimeout(Mg.pending);Mg.pending=setTimeout(()=>{renderMgmtNow();if(typeof guideRefresh==='function')guideRefresh();},0);}
 function mgAct(a){const e=Mg.edits[a.key]||{};return {...a,role:e.role||a.role,owner:(e.owner||'').trim(),due:e.due||''};}
 function renderMgmtNow(){
   const box=$('mgmtPage'); if(!box) return; mgLoad();
@@ -7207,9 +7275,428 @@ function bindMgmt(){
   $('mgmtReset')?.addEventListener('click',async()=>{if(!Object.keys(Mg.edits).length)return;if(!await confirmModal('清除待辦的指派','會清除你填的負責人、確認期限與改過的負責角色，全部回到「待確認」。','清除指派',true))return;Mg.edits={};mgSave();renderMgmtNow();});
 }
 
+/* =====================================================================
+   操作指導（控制台）
+   使用者用中文說「想要什麼成果、什麼格式」，系統：
+   1. 判讀需求：要的成果（管理摘要、趨勢圖、彙總表…）、呈現方式（圖文並茂、一頁…）、用途（給主管、寄信、簡報…）、指定的檔案格式
+   2. 依網站「實際有的功能」與「目前匯入的資料」排出操作步驟（已完成／待操作／需要處理）
+   3. 推薦呈現形式與檔案格式，並說明理由；做不到的格式（PowerPoint、Word…）直接說做不到，改推薦最接近的做法
+   4. 從印刷機印出「操作指導單」，可開啟逐步指導：「帶我去」捲到該按鈕並標示，「代入指令」只把指令填進控制台，不會自動執行
+   系統只指導，不會替使用者匯入、下載或修改資料。全部是本機規則判讀，不連線雲端 AI。
+   ===================================================================== */
+const GD_VERBS='做|產|匯出|輸出|下載|列印|印|存|轉|弄|整理|合併|彙整|製作|產生|備份|還原|處理|操作|使用|用|看|設定|核對|對帳|匯入|上傳|寄|分享|給|拿到|得到|取得|做成|呈現|準備';
+const GD_HOW=new RegExp(`(?:怎麼|怎樣|如何|要怎麼|該怎麼|能不能|能否|有沒有辦法)\\s*(?:才能|才可以)?\\s*(?:${GD_VERBS})|教我|指導|操作步驟|操作方式|操作流程|手把手|一步一步|步驟`);
+const GD_MAKE=/產出|產生|製作|做(?:一份|一個|一張|成|出)|整理成|彙整成|匯出|輸出|下載|列印|印出|印成|存成|轉成|另存|給我(?:一份|一個|一張)|我要(?:一份|一個|一張|做|產|匯|下載|列印|印)|我想(?:要)?(?:一份|一個|做|產|匯|下載|列印|印)|準備(?:一份|一個)|生成|寄給|傳給|分享給|報告給|交給|呈報|貼到|貼進|放進|放到|插入/;
+const GD_NOUN=/報告|報表|摘要|簡報|投影片|檔案|文件|檔|pdf|excel|xlsx|xls|csv|png|jpe?g|svg|markdown|json|word|docx|ppt|powerpoint|圖片|圖檔|圖表|趨勢圖|試算表|備份|清單|彙總表|彙整表|表格|明細/i;
+const GD_ALWAYS=/匯出|輸出|下載|列印|印出|存成|另存/;   // 這些動詞本來的查詢解析不處理，一律當成要檔案
+
+/** 成果（網站實際能產生的東西）：格式、建議、使用的資料 */
+const GD_GOALS={
+  mgmt:{label:'管理摘要（一頁）',re:/管理摘要|摘要|主管(?:看的)?(?:報告|報表)|管理報告|重點整理|總結報告|結論報告|一頁報告|會議報告/,fmts:['pdf','print','md','text'],panel:'#mgmt'},
+  trend:{label:'每日趨勢圖（完成量＋不良率）',re:/趨勢|每日.{0,4}(?:完成量|不良率|產量|良率)|不良率.{0,6}(?:變化|走勢|圖)|走勢|折線/,fmts:['png','svg','csv','xlsx'],panel:'#consTrendBox'},
+  cons:{label:'生產日報彙總表（日期×產線）',re:/日報|彙整|彙總表|生產報表|報工|合併.{0,6}(?:日報|報表|工作表)|產線.{0,4}(?:統計|彙總|報表)|不良率/,fmts:['xlsx','csv'],panel:'#consolidate'},
+  ship:{label:'訂單與出貨核對結果',re:/出貨核對|核對|對帳|出貨紀錄|出貨記錄|累計出貨|欠交|出貨進度|出貨狀況|交貨狀況|超量|已交/,fmts:['xlsx','csv'],panel:'#reconcile'},
+  rank:{label:'產品銷量排行',re:/排行|排名|銷量|賣得最好|熱銷|前\s*\d+\s*名|訂購量最高/,fmts:['xlsx','csv'],panel:'#sales'},
+  cross:{label:'客戶×產品交叉統計',re:/交叉|客戶.{0,3}[×xX和與對跟]產品|產品.{0,3}[×xX和與對跟]客戶/,fmts:['csv','xlsx'],panel:'#cross'},
+  anom:{label:'資料異常清單',re:/異常|錯誤資料|問題資料|資料檢查|有問題的資料/,fmts:['csv','xlsx'],panel:'#anomalies'},
+  bundle:{label:'三檔合一 Excel（訂單＋產品＋客戶＋完整對照結果）',re:/三檔合一|完整對照|訂單.{0,3}產品.{0,3}客戶.{0,6}(?:一個|同一|合併)/,fmts:['xlsx'],panel:'#backup'},
+  backup:{label:'完整備份（JSON）',re:/備份|還原|帶到別台|換電腦|另一台電腦|別台電腦|搬到/,fmts:['json'],panel:'#backup'},
+  orders:{label:'訂單清單',re:/訂單|明細|清單|全部報表|完整報表|分析報表|所有報表/,fmts:['xlsx','csv','print','pdf'],panel:'#orders'},
+};
+const GD_ORDER=['backup','bundle','mgmt','trend','cons','ship','cross','rank','anom','orders'];
+const GD_FMT={
+  pdf:{label:'PDF',re:/pdf/i},
+  xlsx:{label:'Excel（.xlsx）',re:/excel|xlsx|xls|試算表|活頁簿/i},
+  csv:{label:'CSV',re:/csv/i},
+  png:{label:'PNG 圖片',re:/png|jpe?g|圖片|圖檔|照片/i},
+  svg:{label:'SVG 向量圖',re:/svg|向量/i},
+  md:{label:'Markdown',re:/markdown|\bmd\b/i},
+  text:{label:'純文字（複製貼上）',re:/純文字|文字檔|複製|貼到|貼上|內文|信件內容|訊息內容/},
+  print:{label:'紙本列印',re:/列印|印出|紙本|印成|印表機/},
+  json:{label:'JSON 備份檔',re:/json/i},
+};
+const GD_UNSUP=[
+  {key:'ppt',label:'PowerPoint（.pptx）',re:/pptx?|powerpoint|簡報檔|投影片檔/i},
+  {key:'docx',label:'Word（.docx）',re:/word|docx|\bdoc\b/i},
+  {key:'google',label:'Google 文件／試算表',re:/google|雲端硬碟|gdrive/i},
+];
+const GD_PURPOSE=[
+  {key:'slides',label:'放進簡報',re:/簡報|ppt|powerpoint|投影片|上台/i},
+  {key:'boss',label:'給主管／開會',re:/主管|老闆|經理|長官|高層|會議|開會|報告給|呈報|董事|廠長/},
+  {key:'email',label:'寄信／傳訊息',re:/寄|email|e-mail|郵件|信件|line|teams|傳給|分享給|轉給|發給/i},
+  {key:'analysis',label:'再計算分析',re:/分析|計算|樞紐|再加工|篩選|自己算|公式|統計/},
+  {key:'system',label:'匯入其他系統',re:/erp|匯入.{0,4}(?:系統|軟體)|上傳.{0,4}系統|其他系統|資料庫/i},
+  {key:'archive',label:'保存／帶到別台電腦',re:/備份|保存|存檔|留存|帶到|換電腦|別台/},
+  {key:'print',label:'列印紙本／印刷',re:/列印|印出|紙本|印表機|印刷(?!機)/},
+];
+const GD_STYLE=[
+  {key:'visual',label:'圖文並茂（要有圖表）',re:/圖文並茂|圖表|視覺化|有圖|配圖|附圖|圖形|圖像|趨勢圖|長條圖|折線圖|圓餅圖|看圖|圖片/},
+  {key:'onePage',label:'一頁／精簡',re:/一頁|一張|精簡|簡短|重點/},
+  {key:'full',label:'完整內容',re:/完整|全部|所有|詳細/},
+];
+const GD_WHY_GOAL={
+  orders:{pdf:'用瀏覽器列印整頁，在「目的地」選「另存為 PDF」（白底黑字、明細完整列出、A4 橫向）',print:'用瀏覽器列印整頁（白底黑字、明細完整列出、A4 橫向）',xlsx:'「全部報表 Excel」的「目前搜尋結果」工作表就是篩選後的訂單，可再篩選、排序、加公式'},
+  trend:{xlsx:'彙整 Excel 含「每日趨勢」「每日×產線」「趨勢觀察」工作表，可再計算'},
+  rank:{xlsx:'「全部報表 Excel」的「產品排行」工作表，可再排序、加公式'},
+  cross:{xlsx:'「全部報表 Excel」含「客戶產品交叉」工作表，和其他報表放在同一個檔案'},
+  anom:{xlsx:'「全部報表 Excel」含「異常清單」工作表'},
+};
+const gdWhy=(goal,fmt)=>(GD_WHY_GOAL[goal]&&GD_WHY_GOAL[goal][fmt])||GD_FMT_WHY[fmt];
+const GD_FMT_WHY={
+  pdf:'版面固定、A4 直式一頁，給主管看、會議投影或列印都不會跑版',
+  print:'直接送印表機，A4 直式一頁',
+  md:'完整清單（不受一頁限制），可用記事本或支援 Markdown 的工具開啟、再編輯',
+  text:'直接貼進 Email、Teams 或 LINE 的內文，收件人不用開附件',
+  png:'白底圖片，含標題、單位、分母與資料來源，可直接貼進簡報、Email 或和 PDF 一起寄出',
+  svg:'向量圖，放大不失真，適合印刷或用繪圖軟體再編輯',
+  xlsx:'一個檔案含多個工作表，可以再篩選、排序、加公式',
+  csv:'純資料、每列一筆，適合匯入其他系統；用 Excel 直接開啟時 00123 這類前導零可能消失',
+  json:'可以在別台電腦完整還原；檔案含客戶與訂單資料，請妥善保存',
+};
+
+/** 是否為「要怎麼操作／要什麼成果」的指令（不是查資料） */
+function guideDetect(text){
+  const t=str(text).normalize('NFKC');
+  if(!t.trim()) return false;
+  if(GD_HOW.test(t)) return true;
+  if(GD_ALWAYS.test(t)) return true;
+  if(GD_MAKE.test(t)&&GD_NOUN.test(t)) return true;
+  return false;
+}
+/** 判讀需求（純函式：只看文字） */
+function guideAnalyze(text){
+  const t=str(text).normalize('NFKC').replace(/\s+/g,' ').trim();
+  const hit=(re)=>{const m=re.exec(t);return m?m[0]:'';};
+  const goals=[];
+  for(const k of GD_ORDER){const m=hit(GD_GOALS[k].re);if(m)goals.push({key:k,src:m});}
+  // 「趨勢」「摘要」等更明確的成果出現時，泛用的字（日報、訂單、明細）只當資料來源，不另列成果
+  const has=k=>goals.some(g=>g.key===k);
+  let G=goals;
+  if(has('trend')||has('mgmt')) G=G.filter(g=>g.key!=='cons'||/彙總表|彙整表|合併/.test(t));
+  if(has('mgmt')) G=G.filter(g=>!['trend','ship','orders','anom'].includes(g.key)||/和|與|跟|還有|另外|以及|及/.test(t)&&g.key!=='orders');
+  if(G.some(g=>g.key!=='orders')&&has('orders')&&!/訂單(?:明細|清單|列表)|全部報表|完整報表|分析報表/.test(t)) G=G.filter(g=>g.key!=='orders');
+  if(has('backup')) G=G.filter(g=>g.key==='backup'||g.key==='bundle');
+  if(has('bundle')) G=G.filter(g=>g.key!=='orders');
+  G=G.slice(0,3);
+  const formats=Object.keys(GD_FMT).filter(k=>GD_FMT[k].re.test(t)).map(k=>({key:k,src:hit(GD_FMT[k].re)}));
+  // 「列印」同時是用途也是格式；「圖片」「圖表」是呈現方式時不當成指定 PNG（除非明說圖片／PNG）
+  const unsupported=GD_UNSUP.filter(u=>u.re.test(t)).map(u=>({key:u.key,label:u.label,src:hit(u.re)}));
+  const purpose=GD_PURPOSE.filter(p=>p.re.test(t)).map(p=>({key:p.key,label:p.label,src:hit(p.re)}));
+  const style=GD_STYLE.filter(s=>s.re.test(t)).map(s=>({key:s.key,label:s.label,src:hit(s.re)}));
+  const genericReport=!G.length&&/報告|報表|簡報|文件|成果|資料/.test(t);
+  return {text:t,goals:G,formats,unsupported,purpose,style,genericReport,filterText:guideFilterText(t)};
+}
+/** 從句子拿掉「要成果／格式／用途」的字，剩下的當成訂單篩選條件（例如「未出貨的訂單」） */
+function guideFilterText(t){
+  let s=t;
+  const strip=[/請|幫我|麻煩|我要|我想要|我想|想要|需要|可以|能不能|怎麼|如何|要怎麼|該怎麼|教我|一下|然後|並且|並|再/g,
+    /(?:匯出|輸出|下載|列印|印出|印成|存成|轉成|另存|做成|整理成|彙整成|產出|產生|製作|生成|準備|給我|寄給|傳給|分享給|報告給|交給|貼到|貼進|放進|放到)(?:成|為)?/g,
+    /(?:一份|一個|一張)/g,/excel|xlsx|xls|csv|pdf|png|jpe?g|svg|markdown|json|試算表|活頁簿|檔案|檔|文件|圖片|圖檔|報表|報告|清單|列表|明細|資料/gi,
+    /給主管|給老闆|主管|老闆|會議|開會|email|e-mail|郵件|簡報|ppt|powerpoint|word|docx|line|teams/gi,
+    /[，,。、！!？?：:；;「」『』（）()\[\]]/g,/成$|為$|的$|把|將|用/g];
+  for(const re of strip) s=s.replace(re,' ');
+  s=s.split(/\s+/).filter(w=>w&&!/^(?:成|為|的|和|與|及|跟|要|嗎|呢|吧)$/.test(w)).join(' ').replace(/^的|的$/g,'').trim();
+  return s.length>=2?s:'';
+}
+
+/** 目前資料狀態（決定每一步完成了沒） */
+function guideState(){
+  const C=Cons.result, S=Ship.result;
+  const pend=C?C.conflicts.filter(c=>!c.chosen).length:0, cerr=C?C.rows.filter(r=>r.status==='error').length:0;
+  const spend=S?S.conflicts.filter(c=>!c.chosen).length:0, serr=S?S.rows.filter(r=>r.status==='error').length:0;
+  const M=Mg.last, acts=M?M.actions:[];
+  const tbd=acts.filter(a=>{const x=mgAct(a);return !x.owner||!x.due;}).length;
+  return {orders:state.records.length,orderFiles:state.importInfo?.files||[],
+    consSheets:Cons.sheets.length,cons:!!C,consRows:C?C.tot.count:0,consPend:pend,consErr:cerr,consFiles:Cons.files,
+    shipLoaded:Ship.sheets.length>0,ship:!!(S&&!S.noOrders),shipPend:spend,shipErr:serr,shipFiles:Ship.files,shipTargets:S&&!S.noOrders?S.targets.length:0,
+    filters:state.records.length?describeFilters().map(c=>c.label):[],filtered:state.filtered.length,lastQuery:str(state.lastParsed?.raw).trim(),
+    mgFacts:M?M.facts.length:0,mgActs:acts.length,mgTbd:tbd,multiUnit:!!(C&&C.units&&C.units.length>1)};
+}
+const gdList=(a,n=3)=>a.slice(0,n).join('、')+(a.length>n?` 等 ${a.length} 個`:'');
+
+/** 每一步：title（短）、detail（怎麼做）、sel（要標示的元素）、fb（元素不在畫面上時改標示這裡）、status */
+const GD_STEP={
+  importOrders:st=>({id:'importOrders',title:'匯入公司資料（訂單＋產品＋客戶）',sel:'#importZone',fb:'#import',
+    detail:st.orders?`已完成：${gdList(st.orderFiles)||'目前的訂單資料'}，訂單 ${st.orders.toLocaleString('zh-TW')} 筆。`:'到「資料匯入」按「選擇公司資料檔」，選一個 .xlsx（含訂單、產品主檔、客戶主檔三個工作表），或一次多選三個 CSV。檔案只在這個瀏覽器處理，不會上傳。',
+    status:st.orders?'done':'todo'}),
+  importDaily:st=>st.consSheets&&!st.cons?{id:'importDaily',title:'勾選要合併的日報工作表',sel:'#consGroups',fb:'#consolidate',status:'warn',
+      detail:'已讀到日報，但可合併的工作表超過兩張，系統不自動猜：請在「多檔彙整」①按分組按鈕（例如只勾選同一組），或自己勾選要合併的工作表。'}
+    :{id:'importDaily',title:'匯入生產日報',sel:'#consImportZone',fb:'#consolidate',status:st.cons?'done':'todo',
+      detail:st.cons?`已完成：${gdList(st.consFiles)}，計入 ${st.consRows.toLocaleString('zh-TW')} 筆回報。`:'到「多檔彙整」按「選擇日報檔」，選含日報工作表的 .xlsx，或一次多選幾個日報 CSV（需要回報編號、日期、產線、完成量、不良量）。'},
+  consConflicts:st=>({id:'consConflicts',title:st.consPend?`處理回報編號衝突（${st.consPend} 組）`:'確認日報沒有衝突',sel:'#consDupBox',fb:'#consolidate',
+    status:!st.cons?'blocked':st.consPend?'warn':'done',
+    detail:!st.cons?'先完成「匯入生產日報」。':st.consPend?`同一回報編號內容不同的 ${st.consPend} 組目前都沒有計入數字：在「多檔彙整」②替每組選擇採用的版本。也可以先不處理，管理摘要會把它列為待查問題。${st.consErr?`另有 ${st.consErr} 列資料錯誤未計入（看⑤異常清單）。`:''}`:`沒有待確認的衝突。${st.consErr?`有 ${st.consErr} 列資料錯誤未計入（看⑤異常清單）。`:''}`}),
+  importShip:st=>({id:'importShip',title:'匯入出貨紀錄',sel:'#shipImportZone',fb:'#reconcile',
+    status:st.ship?'done':st.shipLoaded&&!st.orders?'warn':'todo',
+    detail:st.ship?`已完成：${gdList(st.shipFiles)}，核對訂單 ${st.shipTargets.toLocaleString('zh-TW')} 項。`:st.shipLoaded?'已讀到出貨紀錄，但還沒有訂單可以核對：請先完成「匯入公司資料」。':'到「出貨核對」按「選擇出貨紀錄檔」（需要出貨編號、訂單編號、出貨數量）。要先有訂單，才能核對。'}),
+  shipConflicts:st=>({id:'shipConflicts',title:st.shipPend?`處理出貨編號衝突（${st.shipPend} 組）`:'確認出貨紀錄沒有衝突',sel:'#shipConfBox',fb:'#reconcile',
+    status:!st.ship?'blocked':st.shipPend?'warn':'done',
+    detail:!st.ship?'先完成「匯入出貨紀錄」。':st.shipPend?`同一出貨編號內容不同的 ${st.shipPend} 組目前都沒有計入：在「出貨核對」的衝突表選擇採用哪一版。${st.shipErr?`另有 ${st.shipErr} 列資料錯誤未計入。`:''}`:`沒有待確認的衝突。${st.shipErr?`有 ${st.shipErr} 列資料錯誤未計入（看異常清單）。`:''}`}),
+  mgOpen:st=>({id:'mgOpen',title:'到「管理摘要」確認內容',sel:'#mgmtPage',fb:'#mgmt',status:st.mgFacts?'todo':'blocked',
+    detail:st.mgFacts?`摘要已依目前資料自動產生（已知事實 ${st.mgFacts} 項）。先看「已知事實」「待查問題」：原因沒有資料來源時只列為待查問題，不寫成結論。`:'摘要需要生產日報或出貨核對的結果：先完成前面的匯入步驟。'}),
+  mgAssign:st=>({id:'mgAssign',title:'填寫待辦的負責人與確認期限',sel:'.mg-acts',fb:'#mgmt',status:!st.mgActs?'blocked':st.mgTbd?'optional':'done',
+    detail:!st.mgActs?'有待辦時才需要填。':st.mgTbd?`${st.mgActs} 項待辦中有 ${st.mgTbd} 項還沒有負責人或期限；沒填的會顯示「待確認」（選用）。建議負責角色可以改。`:'每項待辦都已填負責人與確認期限。'}),
+  mgPdf:st=>({id:'mgPdf',title:'按「列印／存成 PDF（一頁）」',sel:'[data-mg="print"]',fb:'#mgmt',status:st.mgFacts?'todo':'blocked',
+    detail:'在列印視窗的「目的地」選「另存為 PDF」（要紙本就選印表機）。只印摘要、A4 直式一頁；項目放不下時會註明「另有 N 項」，完整內容用 Markdown。'}),
+  mgPrint:st=>({id:'mgPrint',title:'按「列印／存成 PDF（一頁）」送印',sel:'[data-mg="print"]',fb:'#mgmt',status:st.mgFacts?'todo':'blocked',
+    detail:'在列印視窗選擇印表機，A4 直式一頁、只印摘要。'}),
+  mgMd:st=>({id:'mgMd',title:'按「下載 Markdown（完整清單）」',sel:'[data-mg="md"]',fb:'#mgmt',status:st.mgFacts?'todo':'blocked',detail:'包含全部事實、問題與待辦（不受一頁限制）。檔案含訂單編號與數量，請妥善保存。'}),
+  mgCopy:st=>({id:'mgCopy',title:'按「複製文字」再貼到內文',sel:'[data-mg="copy"]',fb:'#mgmt',status:st.mgFacts?'todo':'blocked',detail:'複製的是完整內容（Markdown 格式的純文字），可直接貼進 Email、Teams 或 LINE。'}),
+  trendView:st=>({id:'trendView',title:'到「趨勢圖」選顯示方式',sel:'#consTrendBox',fb:'#consolidate',status:st.cons?'todo':'blocked',
+    detail:st.cons?`可切換「全部產線合計」或「依產線比較」${st.multiUnit?'；完成量有多種單位，請先選要畫的單位':''}。圖下方有「圖表可直接支持的觀察」與「仍需查證的問題」。`:'趨勢圖需要生產日報：先完成「匯入生產日報」。'}),
+  trendPng:st=>({id:'trendPng',title:'按「下載趨勢圖 PNG」',sel:'[data-trend-dl="png"]',fb:'#consTrendBox',status:st.cons?'todo':'blocked',detail:'白底圖片，含標題、單位、分母與資料來源。'}),
+  trendSvg:st=>({id:'trendSvg',title:'按「下載趨勢圖 SVG」',sel:'[data-trend-dl="svg"]',fb:'#consTrendBox',status:st.cons?'todo':'blocked',detail:'向量圖，放大不失真。'}),
+  trendCsv:st=>({id:'trendCsv',title:'按「每日趨勢 CSV」',sel:'[data-trend-dl="csv"]',fb:'#consTrendBox',status:st.cons?'todo':'blocked',detail:'每天一列：完成量、不良量、不良率、筆數。'}),
+  consCheck:st=>({id:'consCheck',title:'檢查③彙總表（日期×產線）',sel:'#consSumBox',fb:'#consolidate',status:st.cons?'todo':'blocked',detail:'每組可點「計入筆數」看每筆回報的來源工作表與列號。不良率＝不良量合計 ÷ 完成量合計。'}),
+  consXlsx:st=>({id:'consXlsx',title:'按「明細＋彙總表＋每日趨勢＋異常清單 Excel（.xlsx）」',sel:'[data-cons-export="xlsx"]',fb:'#consolidate',status:st.cons?'todo':'blocked',detail:'工作表：彙總表、每日趨勢、每日×產線、趨勢觀察、明細、異常清單、說明。'}),
+  consCsv:st=>({id:'consCsv',title:'按「彙總表 CSV」',sel:'[data-cons-export="summary"]',fb:'#consolidate',status:st.cons?'todo':'blocked',detail:'UTF-8（含 BOM）；明細與異常清單也有各自的 CSV 按鈕。'}),
+  shipCheck:st=>({id:'shipCheck',title:'查看核對結果',sel:'#shipSumBox',fb:'#reconcile',status:st.ship?'todo':'blocked',detail:'可依出貨狀態（未出貨、部分出貨、出貨超量、單位不一致…）篩選，點「出貨筆數」看每筆出貨的來源。'}),
+  shipXlsx:st=>({id:'shipXlsx',title:'按「核對結果＋出貨明細＋異常清單 Excel（.xlsx）」',sel:'[data-ship-export="xlsx"]',fb:'#reconcile',status:st.ship?'todo':'blocked',detail:'匯出檔含客戶與訂單資料，請妥善保存。'}),
+  shipCsv:st=>({id:'shipCsv',title:'按「核對結果 CSV」',sel:'[data-ship-export="result"]',fb:'#reconcile',status:st.ship?'todo':'blocked',detail:'每張訂單一列：訂單數量、累計出貨、未出貨數量、狀態。'}),
+  orderFilter:(st,A)=>A.cmdBlocked?{id:'orderFilter',title:`條件「${A.cmdBlocked.text}」目前無法查詢`,status:'warn',sel:A.cmdBlocked.ship&&st.ship?'#shipSumBox':'#mapping',fb:A.cmdBlocked.ship&&st.ship?'#reconcile':'#mapping',
+      detail:`系統看得懂這個條件（${A.cmdBlocked.desc}），但需要「${A.cmdBlocked.need.join('、')}」，目前的訂單資料沒有；系統不會用其他欄位猜測。${A.cmdBlocked.ship&&st.ship?'你已匯入出貨紀錄：可改用「出貨核對」依狀態篩選「未出貨」「部分出貨」，再匯出核對結果（下面的步驟）。':A.cmdBlocked.ship?'可到「欄位對應」指定出貨狀態欄，或匯入出貨紀錄後改用「出貨核對」。':'可到「欄位對應」指定欄位後再試。'}`}
+    :A.cmd?{id:'orderFilter',title:`在控制台查詢「${A.cmd}」`,sel:'#nlInput',fb:'#console',cmd:A.cmd,status:!st.orders?'blocked':st.filters.length&&st.lastQuery===A.cmd?'done':'todo',
+      detail:!st.orders?'先完成「匯入公司資料」。':`按「代入指令」把「${A.cmd}」填進控制台，再拉下主啟動桿（或按 Enter）。${A.cmdDesc?`系統會辨識為：${A.cmdDesc}。`:''}${st.filters.length?`目前條件：${st.filters.join('｜')}（${st.filtered.toLocaleString('zh-TW')} 筆）。`:''}`}
+    :{id:'orderFilter',title:'設定篩選條件（選用）',sel:'#filters',fb:'#filters',status:!st.orders?'blocked':st.filters.length?'done':'optional',
+      detail:!st.orders?'先完成「匯入公司資料」。':st.filters.length?`目前條件：${st.filters.join('｜')}（${st.filtered.toLocaleString('zh-TW')} 筆）。`:'在控制台用中文查詢（例如「查詢尚未出貨的訂單」），或到「搜尋篩選」設定；不設定就是全部訂單。'},
+  orderCheck:st=>({id:'orderCheck',title:'到「訂單明細」確認結果',sel:'#orders',fb:'#orders',status:st.orders?'todo':'blocked',detail:st.orders?`目前結果 ${st.filtered.toLocaleString('zh-TW')} 筆；可點欄位標題排序。`:'先完成「匯入公司資料」。'}),
+  orderXlsx:st=>({id:'orderXlsx',title:'按「全部報表 Excel（.xlsx，多工作表）」',sel:'[data-export="xlsx"]',fb:'#backup',status:st.orders?'todo':'blocked',detail:'「目前搜尋結果」工作表就是篩選後的訂單；另含產品排行、客戶產品交叉、異常清單、匯出說明。'}),
+  orderCsv:st=>({id:'orderCsv',title:st.filters.length?'按「目前搜尋結果 CSV」':'按「全部訂單明細 CSV」',sel:st.filters.length?'[data-export="filtered"]':'[data-export="all"]',fb:'#backup',status:st.orders?'todo':'blocked',detail:'UTF-8（含 BOM）；以 =、+、-、@ 開頭的文字會加單引號，避免被當成公式。'}),
+  orderPrint:st=>({id:'orderPrint',title:'按 Ctrl＋P（Mac：⌘＋P）列印',sel:'#orders',fb:'#orders',status:st.orders?'todo':'blocked',detail:'用瀏覽器列印整頁（主機動畫區不印）：自動改成白底黑字、明細表完整列出（A4 橫向）。要 PDF 就在「目的地」選「另存為 PDF」。'}),
+  rankView:st=>({id:'rankView',title:'到「產品銷量統計與排行榜」選指標與名次',sel:'#sales',fb:'#sales',status:st.orders?'todo':'blocked',detail:'可選訂購量、已出貨量、訂單筆數（有金額時另有訂單金額）與前 5／10／20 名；長條圖、圓餅圖可切換。'}),
+  rankCsv:st=>({id:'rankCsv',title:'按「匯出排行 CSV」',sel:'#exportRank',fb:'#sales',status:st.orders?'todo':'blocked',detail:'依目前選的指標與條件匯出。'}),
+  crossView:st=>({id:'crossView',title:'到「客戶與產品交叉分析」',sel:'#cross',fb:'#cross',status:st.orders?'todo':'blocked',detail:'可切換「依客戶看產品／依產品看客戶」，點格子看對應訂單。'}),
+  crossCsv:st=>({id:'crossCsv',title:'按「匯出交叉統計 CSV」',sel:'#exportCross',fb:'#cross',status:st.orders?'todo':'blocked',detail:'畫面最多顯示 80 列 × 14 欄，匯出檔是完整內容。'}),
+  anomView:st=>({id:'anomView',title:'到「資料檢查與異常清單」',sel:'#anomalies',fb:'#anomalies',status:st.orders?'todo':'blocked',detail:'列出缺欄位、日期無法辨識、主檔對不到等問題資料。'}),
+  anomCsv:st=>({id:'anomCsv',title:'按「匯出異常清單 CSV」',sel:'#exportAnom',fb:'#anomalies',status:st.orders?'todo':'blocked',detail:'生產日報與出貨核對各有自己的異常清單匯出按鈕。'}),
+  bundle:st=>({id:'bundle',title:'按「三檔合一 Excel」',sel:'[data-export="bundle"]',fb:'#backup',status:st.orders?'todo':'blocked',detail:'一個活頁簿含訂單、產品主檔、客戶主檔與完整對照結果。檔案含客戶資料，請妥善保存。'}),
+  backup:st=>({id:'backup',title:'按「下載完整備份 JSON」',sel:'#backupBtn',fb:'#backup',status:st.orders?'todo':'blocked',detail:'含訂單、產品、客戶、欄位對應與條件設定；不含生產日報、出貨紀錄與管理摘要的指派（請保留原檔）。備份檔含客戶個資，請妥善保存。'}),
+  restore:st=>({id:'restore',title:'在另一台電腦還原',sel:'#importZone',fb:'#import',status:'optional',detail:'在另一台電腦開啟本網站，到「資料匯入」選這個 JSON 備份檔；還原前會先請你確認，不會直接覆蓋。'}),
+  screenshot:()=>({id:'screenshot',title:'用螢幕截圖取得圖表',sel:'#sales',fb:'#sales',status:'optional',detail:'銷量長條圖／圓餅圖沒有下載圖片的按鈕，要放進簡報請用螢幕截圖（Windows：Win＋Shift＋S；Mac：⌘＋Shift＋4）。'}),
+};
+const GD_FMT_STEPS={
+  mgmt:{pdf:['mgPdf'],print:['mgPrint'],md:['mgMd'],text:['mgCopy'],png:['trendView','trendPng'],svg:['trendView','trendSvg']},
+  trend:{png:['trendView','trendPng'],svg:['trendView','trendSvg'],csv:['trendCsv'],xlsx:['consXlsx']},
+  cons:{xlsx:['consXlsx'],csv:['consCsv'],png:['trendView','trendPng']},
+  ship:{xlsx:['shipXlsx'],csv:['shipCsv']},
+  orders:{xlsx:['orderXlsx'],csv:['orderCsv'],print:['orderPrint'],pdf:['orderPrint']},
+  rank:{xlsx:['orderXlsx'],csv:['rankCsv'],png:['screenshot']},
+  cross:{xlsx:['orderXlsx'],csv:['crossCsv']},
+  anom:{xlsx:['orderXlsx'],csv:['anomCsv']},
+  bundle:{xlsx:['bundle']},
+  backup:{json:['backup','restore']},
+};
+
+/** 推薦格式：使用者有指定且做得到就照指定；做不到的說明原因並給替代；沒指定就依用途與呈現方式推薦 */
+function guideRecommend(goal,A,st){
+  const fm=GD_GOALS[goal].fmts, P=new Set(A.purpose.map(p=>p.key)), S=new Set(A.style.map(s=>s.key));
+  const asked=A.formats.map(f=>f.key).filter(k=>!(k==='print'&&!fm.includes('print')&&P.has('print')&&A.formats.length>1));
+  const rec=[], notes=[], missing=[];
+  const add=(fmt,why,on)=>{if(!rec.some(r=>r.fmt===fmt&&r.on===(on||goal)))rec.push({fmt,on:on||goal,why});};
+  for(const k of asked){
+    if(fm.includes(k)) add(k,'你指定的格式：'+gdWhy(goal,k));
+    else if(goal==='mgmt'&&(k==='png'||k==='svg')) add(k,'管理摘要頁本身沒有圖片格式；圖用「趨勢圖」下載'+(st.cons?'：':'（需要生產日報，目前尚未匯入）：')+GD_FMT_WHY[k],'trend');
+    else if(goal==='cons'&&k==='png') add('png','彙總表沒有圖片格式；圖用「趨勢圖」下載：'+GD_FMT_WHY.png,'trend');
+    else if(goal==='mgmt'&&(k==='xlsx'||k==='csv')){missing.push(`${GD_FMT[k].label}：管理摘要沒有這個格式；要計算用的數字請用「多檔彙整」或「出貨核對」的 Excel`);if(st.cons||!st.ship)add('xlsx','可再計算的數字：生產日報的彙總表與明細','cons');if(st.ship)add('xlsx','可再計算的數字：出貨核對結果','ship');}
+    else if(goal==='rank'&&k==='png') {missing.push('PNG 圖片：銷量圖表沒有下載圖片的按鈕，請用螢幕截圖');add('png','用螢幕截圖取得圖表（網站沒有這個下載按鈕）');}
+    else if(goal==='trend'&&(k==='pdf'||k==='print')){missing.push(`${GD_FMT[k].label}：趨勢圖沒有直接存成 PDF 的按鈕`);add('svg','要 PDF 或列印：下載 SVG 後用瀏覽器開啟，按列印並選「另存為 PDF」；向量圖放大不失真');}
+    else if((goal==='cons'||goal==='ship')&&(k==='pdf'||k==='print')) missing.push(`${GD_FMT[k].label}：${GD_GOALS[goal].label}沒有 PDF；可下載 ${goal==='trend'?'SVG／PNG 後用瀏覽器或看圖軟體開啟再列印':'Excel 後用 Excel 列印或另存 PDF'}`);
+    else missing.push(`${GD_FMT[k].label}：${GD_GOALS[goal].label}沒有這個格式`);
+  }
+  for(const u of A.unsupported){
+    const alt=goal==='rank'?'銷量圖表用螢幕截圖貼進簡報，排行數字用 Excel':goal==='mgmt'?'改用 PDF（直接附上），或「複製文字」貼進文件，圖表用趨勢圖 PNG 插入':goal==='trend'?'趨勢圖 PNG 可直接插入 PowerPoint／Word':u.key==='google'?'下載 Excel（.xlsx）後上傳到 Google 試算表即可開啟':'下載 Excel（.xlsx）或 CSV，再用其他軟體開啟';
+    missing.push(`${u.label}：本網站不能直接產生；${alt}`);
+  }
+  if(!rec.length){
+    const visualWanted=S.has('visual')||P.has('slides');
+    if(goal==='mgmt'){
+      if(P.has('slides')){add('text','簡報的文字內容：複製後貼進投影片');}
+      else if(P.has('email')&&!P.has('boss')){add('text',GD_FMT_WHY.text);add('pdf','另附 PDF 方便列印或轉寄');}
+      else if(P.has('print')) add('print',GD_FMT_WHY.print);
+      else if(P.has('archive')) add('md',GD_FMT_WHY.md);
+      else add('pdf',GD_FMT_WHY.pdf);
+      if(visualWanted) add('png','圖文並茂需要圖表：'+(st.cons?'':'趨勢圖需要生產日報（目前尚未匯入）；')+GD_FMT_WHY.png,'trend');
+      if(P.has('analysis')){if(st.cons||!st.ship)add('xlsx','要再計算的數字：生產日報彙總表與明細','cons');if(st.ship)add('xlsx','要再計算的數字：出貨核對結果','ship');}
+    }else if(goal==='trend'){
+      if(P.has('analysis')) add('xlsx','要看數字或再計算：'+gdWhy('trend','xlsx'));
+      else if(P.has('system')) add('csv',GD_FMT_WHY.csv);
+      else if(P.has('print')) add('svg','印刷用：'+GD_FMT_WHY.svg);
+      else add('png',GD_FMT_WHY.png);
+    }else if(goal==='cons'||goal==='ship'){
+      add(P.has('system')?'csv':'xlsx',GD_FMT_WHY[P.has('system')?'csv':'xlsx']);
+      if(goal==='cons'&&visualWanted) add('png','圖文並茂：搭配趨勢圖 PNG','trend');
+    }else if(goal==='orders'){
+      if(P.has('print')) add('print',gdWhy('orders','print'));
+      else add(P.has('system')?'csv':'xlsx',gdWhy('orders',P.has('system')?'csv':'xlsx'));
+    }else if(goal==='rank'){
+      add(P.has('system')?'csv':'xlsx',gdWhy('rank',P.has('system')?'csv':'xlsx'));
+      if(visualWanted) add('png','圖表：網站沒有下載圖片的按鈕，請用螢幕截圖');
+    }else if(goal==='cross'||goal==='anom'){const f=P.has('boss')||P.has('analysis')?'xlsx':'csv';add(f,gdWhy(goal,f));}
+    else if(goal==='bundle') add('xlsx',GD_FMT_WHY.xlsx);
+    else if(goal==='backup') add('json',GD_FMT_WHY.json);
+  }
+  if(goal==='mgmt'&&rec.some(r=>r.on==='trend')&&!st.cons&&st.ship) notes.push('目前只有出貨核對資料，出貨核對沒有圖表；要附圖表，需先匯入生產日報（每日趨勢圖）。');
+  if(goal==='mgmt'&&rec.some(r=>r.on==='trend')) notes.push('管理摘要頁本身是文字與表格，沒有圖；圖表要另外下載趨勢圖 PNG，和 PDF 一起寄出，或兩者貼進同一份簡報／文件。系統不會自動把兩者合成一個檔案。');
+  const alts=fm.filter(k=>!rec.some(r=>r.fmt===k&&r.on===goal)).map(k=>GD_FMT[k].label);
+  return {rec,alts,notes,missing};
+}
+
+/** 依需求與目前資料排出步驟 */
+function guideBuild(A,st){
+  A.cmd='';A.cmdDesc='';A.cmdBlocked=null;
+  const out={text:A.text,goals:[],steps:[],rec:[],alts:[],notes:[],missing:[],need:[],unknown:false,generic:false,state:st};
+  let goals=A.goals.map(g=>g.key);
+  if(!goals.length){
+    if(A.genericReport||A.style.length||A.formats.length||A.unsupported.length){
+      out.generic=true;
+      if(st.cons||st.ship) goals=['mgmt']; else if(st.orders) goals=['orders']; else if(A.formats.some(f=>f.key==='json')) goals=['backup'];
+    }
+  }
+  if(!goals.length){out.unknown=true;return out;}
+  out.goals=goals;
+  // 需求判讀（顯示給使用者看：系統依哪些字判斷）
+  const srcOf=k=>{const g=A.goals.find(x=>x.key===k);return g?`（依「${g.src}」）`:'';};
+  out.need.push(['要的成果',goals.map(k=>GD_GOALS[k].label+srcOf(k)).join('；')+(out.generic?`（你沒有指定內容，依目前資料推薦）`:'')]);
+  out.need.push(['呈現方式',A.style.length?A.style.map(s=>`${s.label}（依「${s.src}」）`).join('；'):'未指定']);
+  out.need.push(['用途',A.purpose.length?A.purpose.map(p=>`${p.label}（依「${p.src}」）`).join('；'):'未指定']);
+  out.need.push(['指定格式',A.formats.length||A.unsupported.length?[...A.formats.map(f=>`${GD_FMT[f.key].label}（依「${f.src}」）`),...A.unsupported.map(u=>`${u.label}（依「${u.src}」）`)].join('；'):'未指定 → 由系統推薦']);
+  // 訂單類：剩下的文字能被查詢解析時，當作篩選指令
+  if(goals.some(k=>['orders','rank','cross'].includes(k))&&A.filterText&&st.orders){
+    try{const P=RuleParser.parse(A.filterText,{today:todayLocal(),vocab:getVocab(),qtyIntegerOnly:state.records.every(r=>r.qty==null||Number.isInteger(r.qty))});
+      const d=describeParsed(P), F=P.filters;
+      const nF=['customer','customerId','product','sku','category','orderNo'].reduce((s,k)=>s+F[k].length,0)+['ship','date','qtyMin','qtyMax','pStatus','cStatus','anomaly'].filter(k=>F[k]!=null).length;
+      if(nF&&!P.unknown.length&&!P.errors.length){const q=queryNeeds(P);
+        if(q.need.length) A.cmdBlocked={text:A.filterText,desc:d.text||'',need:[...new Set(q.need)],ship:F.ship==='unshipped'||F.ship==='shipped'};   // 條件看得懂，但目前資料沒有需要的欄位：不給指令，說明缺什麼
+        else{A.cmd=A.filterText;A.cmdDesc=d.text||'';}}
+    }catch(e){}
+  }else if(goals.includes('orders')&&A.filterText&&!st.orders&&/出貨|訂單|客戶|產品|明天|下週|本週|月/.test(A.filterText)){A.cmd=A.filterText;}
+  const ids=[], push=id=>{if(!ids.includes(id))ids.push(id);};
+  const prodWords=/生產|不良|日報|產線|完成量|良率|報工/.test(A.text), shipWords=/出貨|交貨|核對|對帳|欠交/.test(A.text);
+  for(const k of goals){
+    const R=guideRecommend(k,A,st);
+    out.rec.push(...R.rec.filter(r=>!out.rec.some(x=>x.fmt===r.fmt&&x.on===r.on)));out.notes.push(...R.notes);out.missing.push(...R.missing);
+    if(goals.length===1) out.alts=R.alts;
+    const fmts=R.rec;
+    if(k==='mgmt'){
+      const wantCons=prodWords||st.consSheets>0||fmts.some(r=>r.on==='trend'||r.on==='cons')||(!shipWords&&!st.shipLoaded);
+      const wantShip=shipWords||st.shipLoaded||(st.orders>0&&!prodWords);
+      if(wantCons){push('importDaily');push('consConflicts');}
+      if(wantShip){push('importOrders');push('importShip');push('shipConflicts');}
+      push('mgOpen');push('mgAssign');
+    }else if(k==='trend'){push('importDaily');push('consConflicts');push('trendView');}
+    else if(k==='cons'){push('importDaily');push('consConflicts');push('consCheck');}
+    else if(k==='ship'){push('importOrders');push('importShip');push('shipConflicts');push('shipCheck');}
+    else if(k==='orders'){push('importOrders');push('orderFilter');push('orderCheck');}
+    else if(k==='rank'){push('importOrders');push('orderFilter');push('rankView');}
+    else if(k==='cross'){push('importOrders');push('orderFilter');push('crossView');}
+    else if(k==='anom'){push('importOrders');push('anomView');}
+    else if(k==='bundle'||k==='backup'){push('importOrders');}
+    for(const r of fmts){const m=GD_FMT_STEPS[r.on]&&GD_FMT_STEPS[r.on][r.fmt]||GD_FMT_STEPS[k][r.fmt]||[];for(const id of m)push(id);}
+  }
+  if(A.cmdBlocked&&A.cmdBlocked.ship&&st.ship&&!goals.includes('ship')){   // 訂單沒有出貨狀態、但有出貨紀錄：改用出貨核對的狀態
+    push('shipCheck');push('shipXlsx');out.rec.push({fmt:'xlsx',on:'ship',why:'訂單資料沒有出貨狀態；出貨核對結果有「未出貨」「部分出貨」狀態，可以篩選後匯出'});
+  }
+  out.steps=ids.map(id=>GD_STEP[id](st,A));
+  // 選用步驟：管理摘要同時有生產與出貨時，至少要有一邊
+  if(goals.includes('mgmt')&&!st.mgFacts&&ids.includes('importDaily')&&ids.includes('importShip')) out.notes.push('管理摘要需要「生產日報」或「出貨核對」其中一項；兩項都有時，摘要會同時列出生產與出貨的事實。');
+  if(goals.some(k=>['orders','bundle','backup','ship','mgmt'].includes(k))&&out.rec.some(r=>['xlsx','csv','json','md','pdf','print','text'].includes(r.fmt))) out.notes.push('匯出的檔案含訂單或客戶資料，請妥善保存，不要上傳到公開的地方。');
+  out.notes=[...new Set(out.notes)];
+  return out;
+}
+const GD_ST_MARK={done:'✓',todo:'○',warn:'！',blocked:'—',optional:'◇'};
+const GD_ST_TEXT={done:'已完成',todo:'待操作',warn:'需要處理',blocked:'先完成前面的步驟',optional:'選用'};
+function guideReplyText(G){
+  if(G.unknown) return `${G.generic?'你沒有指定要哪一種成果，而且目前還沒有匯入資料，沒辦法依資料推薦。':'看不出想要的成果，所以沒有猜測。'}這個網站可以產生：\n${GD_ORDER.map(k=>'・'+GD_GOALS[k].label+'：'+GD_GOALS[k].fmts.map(f=>GD_FMT[f].label).join('／')).join('\n')}\n請說明想要哪一種，例如：「根據匯入的資料，產出一份圖文並茂的管理摘要」「把未出貨的訂單匯出成 Excel」「每日不良率要怎麼做成圖片放進簡報？」`;
+  const L=['已判讀需求：',...G.need.map(([k,v])=>`・${k}：${v}`)];
+  L.push('建議的呈現形式與格式：',...G.rec.map((r,i)=>`${i+1}. ${GD_FMT[r.fmt].label}${r.on&&r.on!==G.goals[0]?`（${GD_GOALS[r.on].label}）`:''}：${r.why}`));
+  if(G.missing.length) L.push('做不到的部分：',...G.missing.map(m=>'・'+m));
+  if(G.alts.length) L.push(`其他可用格式：${G.alts.join('、')}`);
+  for(const n of G.notes) L.push('注意：'+n);
+  L.push('操作步驟（✓ 已完成、○ 待操作、！需要處理、— 先完成前面的步驟、◇ 選用）：',...G.steps.map((s,i)=>`${GD_ST_MARK[s.status]} ${i+1}. ${s.title}`));
+  L.push('按「開始逐步指導」，系統會一步一步帶你到網頁上對應的位置；系統只指導，不會替你匯入或下載。');
+  return L.join('\n');
+}
+/* ---------- 控制台：執行操作指導 ---------- */
+const Guide={cur:null,analysis:null,idx:0,open:false,min:false,hlTimer:0};
+function runGuide(text){
+  const A=guideAnalyze(text), st=guideState(), G=guideBuild(A,st);
+  Guide.analysis=A; state.lastGuide=G;
+  const pt=$('nlParsedText');
+  pt.textContent=G.unknown?'操作指導：看不出想要的成果':`操作指導：${G.goals.map(k=>GD_GOALS[k].label).join('＋')}｜建議 ${G.rec.map(r=>GD_FMT[r.fmt].label).join('＋')||'—'}`;
+  reply(guideReplyText(G),G.unknown?'warn':'ok');
+  const bar=$('nlGuideBar'); if(bar){bar.hidden=G.unknown;}
+  if(!G.unknown){Guide.cur=G;Guide.idx=Math.max(0,G.steps.findIndex(s=>s.status!=='done'));if(Guide.open)coachRender();}
+}
+/** 資料變了（匯入、選衝突版本、清除）就重算每一步的狀態，停在同一步 */
+function guideRefresh(){
+  if(!Guide.cur||!Guide.analysis) return;
+  const id=Guide.cur.steps[Guide.idx]?.id;
+  Guide.cur=guideBuild(Guide.analysis,guideState());
+  const i=Guide.cur.steps.findIndex(s=>s.id===id); Guide.idx=i>=0?i:Math.min(Guide.idx,Guide.cur.steps.length-1);
+  if(Guide.open) coachRender();
+}
+function coachOpen(){if(!Guide.cur)return;Guide.open=true;Guide.min=false;guideRefresh();coachRender();const c=$('guideCoach');c.hidden=false;$('gcGo').focus({preventScroll:true});}
+function coachClose(){Guide.open=false;$('guideCoach').hidden=true;document.querySelectorAll('.guide-hl').forEach(e=>e.classList.remove('guide-hl'));}
+function coachRender(){
+  const c=$('guideCoach'), G=Guide.cur; if(!c||!G) return;
+  c.classList.toggle('min',Guide.min);
+  const n=G.steps.length, s=G.steps[Guide.idx];
+  $('gcGoal').textContent=`${G.goals.map(k=>GD_GOALS[k].label).join('＋')}｜建議：${G.rec.map(r=>GD_FMT[r.fmt].label).join('＋')}`;
+  $('gcProg').textContent=`步驟 ${Guide.idx+1}／${n}`;
+  const st=$('gcStatus'); st.textContent=`${GD_ST_MARK[s.status]} ${GD_ST_TEXT[s.status]}`; st.className='gc-status st-'+s.status;
+  $('gcTitle2').textContent=s.title; $('gcDetail').textContent=s.detail; if(Guide.noteFor!==s.id){$('gcNote').textContent='';Guide.noteFor=s.id;}
+  $('gcPrev').disabled=Guide.idx===0; $('gcNext').textContent=Guide.idx===n-1?'結束指導':'下一步 ›';
+  $('gcCmd').hidden=!s.cmd;
+  $('gcList').replaceChildren(...G.steps.map((x,i)=>h('li',{class:'st-'+x.status+(i===Guide.idx?' cur':'')},h('button',{type:'button','aria-current':i===Guide.idx?'step':null,onclick:()=>{Guide.idx=i;coachRender();guideGo(G.steps[i]);}},`${GD_ST_MARK[x.status]} ${i+1}. ${x.title}`))));
+  $('gcPill').textContent=`操作指導 ${Guide.idx+1}／${n}`;
+}
+/** 帶我去：捲到該按鈕並標示（摺疊的區塊會打開）；只標示，不按下 */
+function guideGo(s){
+  if(!s) return null;
+  const vis=el=>el&&el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden';
+  let el=document.querySelector(s.sel);
+  if(el){let p=el.parentElement;while(p){if(p.tagName==='DETAILS'&&!p.open)p.open=true;p=p.parentElement;}}
+  if(!vis(el)) el=document.querySelector(s.fb);
+  if(!vis(el)) return null;
+  document.querySelectorAll('.guide-hl').forEach(e=>e.classList.remove('guide-hl'));
+  const tall=el.getBoundingClientRect().height>innerHeight*.4;
+  el.scrollIntoView({block:tall?'start':'center',behavior:Machine.motion==='minimal'||matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  el.classList.add('guide-hl'); clearTimeout(Guide.hlTimer); Guide.hlTimer=setTimeout(()=>el.classList.remove('guide-hl'),6000);
+  if(el.matches('button,a,input:not(.file-hidden),select,textarea,[tabindex]')&&!el.disabled) el.focus({preventScroll:true});
+  return el;
+}
+function bindGuide(){
+  const c=$('guideCoach'); if(!c||c.dataset.bound) return; c.dataset.bound='1';
+  $('nlGuideStart').addEventListener('click',coachOpen);
+  $('slipRoll').addEventListener('click',e=>{if(e.target.closest('[data-guide-start]'))coachOpen();});
+  $('gcPrev').addEventListener('click',()=>{if(Guide.idx>0){Guide.idx--;coachRender();guideGo(Guide.cur.steps[Guide.idx]);}});
+  $('gcNext').addEventListener('click',()=>{if(Guide.idx<Guide.cur.steps.length-1){Guide.idx++;coachRender();guideGo(Guide.cur.steps[Guide.idx]);}else coachClose();});
+  $('gcGo').addEventListener('click',()=>guideGo(Guide.cur.steps[Guide.idx]));
+  $('gcCmd').addEventListener('click',()=>{const s=Guide.cur.steps[Guide.idx];if(!s.cmd)return;const inp=$('nlInput');inp.value=s.cmd;Machine.micro();guideGo({sel:'#nlInput',fb:'#console'});inp.focus({preventScroll:true});const m=`已把「${s.cmd}」填進控制台，拉下主啟動桿（或按 Enter）才會執行。`;setStatusLever(m);$('gcNote').textContent=m;});
+  $('gcClose').addEventListener('click',coachClose);
+  $('gcMin').addEventListener('click',()=>{Guide.min=true;coachRender();});
+  $('gcPill').addEventListener('click',()=>{Guide.min=false;coachRender();$('gcGo').focus({preventScroll:true});});
+  c.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();Guide.min=true;coachRender();}});
+}
+/** 印刷機的操作指導單：需求判讀、建議格式、步驟（狀態符號＋短標題） */
+function guideSlip(G,cmd,no,time){
+  if(G.unknown) return {type:'guide',no,cmd:cmd||'（未輸入指令）',time,stamp:'請補充',steps:[],
+    rows:[['判讀結果','看不出想要的成果（沒有猜測）'],['可以產生',GD_ORDER.map(k=>GD_GOALS[k].label.replace(/（.*$/,'')).join('、')],['請說明','想要哪一種成果、要什麼檔案格式']]};
+  const short=v=>v.replace(/（依「[^」]*」）/g,'').replace(/（你沒有指定內容，依目前資料推薦）/,'（依目前資料推薦）');
+  const need=Object.fromEntries(G.need);
+  const rows=[['要的成果',short(need['要的成果'])]];
+  const sp=[need['呈現方式'],need['用途']].map(short).filter(v=>v!=='未指定');
+  rows.push(['呈現／用途',sp.length?sp.join('；'):'未指定']);
+  rows.push(['建議格式',G.rec.map(r=>GD_FMT[r.fmt].label+(r.on&&r.on!==G.goals[0]?`（${GD_GOALS[r.on].label.replace(/（.*$/,'')}）`:'')).join('＋')||'—']);
+  if(G.missing.length) rows.push(['做不到',G.missing.map(m=>m.split('：')[0]).join('、')]);
+  const done=G.steps.filter(s=>s.status==='done').length;
+  rows.push(['進度',`${G.steps.length} 個步驟，已完成 ${done} 個`]);
+  return {type:'guide',no,cmd:cmd||'（未輸入指令）',time,rows,stamp:'指導',steps:G.steps.map(s=>({mark:GD_ST_MARK[s.status],status:s.status,statusText:GD_ST_TEXT[s.status],title:s.title}))};
+}
+
 /* 啟動（放在最後，確保所有模組都已定義） */
 window.VIOMS={state,RuleParser,setQueryParser,parseDate,parseNumber,classifyStatus,runNL,executeQuery,refresh,rebuild,makeBackup,parseBackup,applyBackup,buildXlsx,orderExport,rankExport,crossExport,anomExport,toCsv,computeAnalytics,rankedProducts,
-  Machine,Lever,Faders,Printer,SFX,Analyzer,Feed,Align,Vault,GEARS,describeParsed,visibleRanking,dateWindowFor,importFiles,fmtQ,fmtDate,unitsInData,IDB,persistNow,fmtTaipei,Cons,consCompute,consDetect,dailyAutoMap,consRecompute,consExport,consDetailExport,consSummaryExport,consAnomExport,consGroupKey,Ship,shipCompute,shipRecompute,shipExport,shipResultExport,shipRowsExport,shipAnomExport,Trend,trendCompute,trendInsights,trendExport,trendDownload,renderTrend,TW,twCandidates,PressFollow,Mg,mgmtCompute,mgMarkdown,mgExport,renderMgmt,renderMgmtNow,mgClear,MG_TBD,mgFit,mgPrintPrep,mgPrintDone};
+  Machine,Lever,Faders,Printer,SFX,Analyzer,Feed,Align,Vault,GEARS,describeParsed,visibleRanking,dateWindowFor,importFiles,fmtQ,fmtDate,unitsInData,IDB,persistNow,fmtTaipei,Cons,consCompute,consDetect,dailyAutoMap,consRecompute,consExport,consDetailExport,consSummaryExport,consAnomExport,consGroupKey,Ship,shipCompute,shipRecompute,shipExport,shipResultExport,shipRowsExport,shipAnomExport,Trend,trendCompute,trendInsights,trendExport,trendDownload,renderTrend,TW,twCandidates,PressFollow,Mg,mgmtCompute,mgMarkdown,mgExport,renderMgmt,renderMgmtNow,mgClear,MG_TBD,mgFit,mgPrintPrep,mgPrintDone,Guide,guideDetect,guideAnalyze,guideBuild,guideState,runGuide,guideRefresh,guideGo,coachOpen,coachClose,GD_STEP,GD_GOALS,GD_FMT};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
 
