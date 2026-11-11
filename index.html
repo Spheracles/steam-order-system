@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-hO2RaW79DZICTSwtmS4900rJVkpWs47NY9kcHc5IL1w=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Ckk0uArXOj/uqFL8OqV7MFTfyBvw7PZ+AKW0LKjBtIQ=' 'sha256-9RNEaIxjg2QcN45O9Va/1Ud4rEUaFcoolRQNf7uZRrs=' 'sha256-N1t5cCnabZugSDADdTN8iRkfUngI8m9tiMDAtPQBugg='; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; worker-src blob:; font-src data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="蒸汽式智慧訂單管理系統：在瀏覽器內匯入訂單、產品與客戶 Excel／CSV，用中文對話查詢、統計銷量與交叉分析。資料不上傳。">
@@ -1074,6 +1074,64 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
 /* sticky 需要祖先不是捲動容器：overflow:clip 與 hidden 一樣裁切，但不會讓 sticky 失效 */
 .stage{overflow:clip}
 @media (max-width:760px){.press-mini{top:calc(var(--rail-h,52px) + 8px);bottom:auto;right:8px;left:8px;max-width:none;padding:8px 10px}.pm-art{width:48px;height:42px}}
+/* ===================== v15 管理摘要（一頁） ===================== */
+.mg-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 16px}
+.mg-tools p{flex:1 1 100%;margin:0}
+.mg-page{--mg-s:1;--mg-ink:#1f1b14;--mg-sub:#50493d;--mg-rule:#cdbf9f;--mg-chip:#efe7d5;
+  max-width:860px;margin:0 auto;padding:36px 40px 28px;background:#fbf8f0;color:var(--mg-ink);border-radius:3px;
+  box-shadow:0 0 0 1px #c9b98f,0 10px 28px rgba(0,0,0,.45);font:calc(14px*var(--mg-s))/1.6 var(--f-sans)}
+.mg-page h3{font:700 calc(22px*var(--mg-s))/1.25 var(--f-serif);color:var(--mg-ink);letter-spacing:.12em;margin:0}
+.mg-head{border-bottom:2px solid #8a6630;padding-bottom:calc(8px*var(--mg-s));margin-bottom:calc(10px*var(--mg-s))}
+.mg-meta{font-size:.84em;color:var(--mg-sub);margin:.3em 0 0}
+.mg-status{margin:.4em 0 0;padding-left:1.2em;font-size:.84em;color:var(--mg-sub)}
+.mg-status li{margin:0}
+.mg-sec{margin-top:calc(12px*var(--mg-s));break-inside:avoid}
+.mg-sec h4{font:700 calc(15.5px*var(--mg-s))/1.3 var(--f-serif);color:var(--mg-ink);margin:0;padding-bottom:3px;border-bottom:1px solid var(--mg-rule);letter-spacing:.06em}
+.mg-note{font-size:.8em;color:var(--mg-sub);margin:.25em 0 .35em}
+.mg-page ol{list-style:none;margin:0;padding:0}
+.mg-page ol>li{position:relative;padding:calc(3px*var(--mg-s)) 0 calc(3px*var(--mg-s)) 2.6em;border-bottom:1px dotted #ddd2b8}
+.mg-no{position:absolute;left:0;top:calc(3px*var(--mg-s));font:700 .86em/1.85 var(--f-type);color:#6b4b1c}
+.mg-area{display:inline-block;margin-right:.45em;padding:0 .4em;font-size:.76em;line-height:1.55;border:1px solid #9c8a64;border-radius:3px;color:var(--mg-sub);vertical-align:1px}
+.mg-refs{display:inline;margin-left:.35em}
+.mg-ref{display:inline-block;margin:1px 3px 1px 0;padding:0 .4em;font-size:.74em;line-height:1.6;background:var(--mg-chip);border:1px solid #d3c6a6;border-radius:3px;color:#3b3427;font-family:var(--f-type);white-space:nowrap}
+.mg-basis-inline{font-size:.84em;color:var(--mg-sub)}
+.mg-more,.mg-none{font-size:.82em;color:var(--mg-sub);margin:.3em 0 0}
+.mg-acts{font-size:.92em;border-collapse:collapse;width:100%}
+.mg-acts th,.mg-acts td{border:1px solid #d6ccb6;padding:calc(4px*var(--mg-s)) 6px;color:var(--mg-ink);background:transparent;vertical-align:top}
+.mg-acts thead th{position:static;background:var(--mg-chip);color:var(--mg-ink);font-weight:700;border-bottom:1px solid #b9a982;white-space:nowrap}
+.mg-acts td.num{text-align:center;font-family:var(--f-type);width:2em}
+.mg-acts td:nth-child(3){width:14em}.mg-acts td:nth-child(4){width:8em}.mg-acts td:nth-child(5){width:9.6em}.mg-acts td.mg-basis{width:3em;text-align:center;font-family:var(--f-type)}
+.mg-page select,.mg-page input[type=text],.mg-page input[type=date]{min-height:32px;padding:4px 8px;font-size:.92em;color:var(--mg-ink);background-color:#fff;border:1px solid #a89a7a;border-radius:3px;box-shadow:none}
+.mg-page select{background-image:linear-gradient(45deg,transparent 50%,#6b4b1c 50%),linear-gradient(135deg,#6b4b1c 50%,transparent 50%);background-position:calc(100% - 14px) 14px,calc(100% - 9px) 14px;background-size:5px 5px;background-repeat:no-repeat;padding-right:22px}
+.mg-page input::placeholder{color:#6d6556}
+.mg-page select:focus,.mg-page input:focus{outline:2px solid #8a6630;outline-offset:1px;background-color:#fff}
+.mg-pv{display:none}
+.mg-pv.tbd{display:inline-block;margin-top:3px;padding:0 .45em;font-size:.8em;line-height:1.6;color:#5e3a00;background:#fbe7bd;border:1px solid #c99a3c;border-radius:3px}
+.mg-foot{margin-top:calc(12px*var(--mg-s));padding-top:6px;border-top:1px solid var(--mg-rule);font-size:.76em;color:var(--mg-sub)}
+@media screen and (max-width:760px){.mg-page:not(.mg-print){padding:20px 14px}.mg-page:not(.mg-print) .mg-acts,.mg-page:not(.mg-print) .mg-acts tbody,.mg-page:not(.mg-print) .mg-acts tr,.mg-page:not(.mg-print) .mg-acts td{display:block;width:auto!important}.mg-page:not(.mg-print) .mg-acts thead{display:none}.mg-page:not(.mg-print) .mg-acts tr{border:1px solid #d6ccb6;margin-bottom:8px}.mg-page:not(.mg-print) .mg-acts td{border:0;border-bottom:1px dotted #ddd2b8;text-align:left!important}
+  .mg-page:not(.mg-print) .mg-acts td:nth-child(3)::before{content:"建議負責角色";display:block;font-size:.8em;color:var(--mg-sub)}.mg-page:not(.mg-print) .mg-acts td:nth-child(4)::before{content:"負責人";display:block;font-size:.8em;color:var(--mg-sub)}.mg-page:not(.mg-print) .mg-acts td:nth-child(5)::before{content:"確認期限";display:block;font-size:.8em;color:var(--mg-sub)}.mg-page:not(.mg-print) .mg-acts td.mg-basis::before{content:"依據 ";font-size:.8em;color:var(--mg-sub)}}
+/* 列印版樣式：畫面上只在量高度的瞬間套用（.mg-print，同一個步驟內加上又移除，不會畫到螢幕上）；真正列印時由 body.print-mgmt 在 @media print 套用 */
+.mg-page.mg-print{max-width:none;width:186mm;padding:0;box-shadow:none;border-radius:0;font-size:calc(9.6pt*var(--mg-s));background:#fff}
+.mg-page.mg-print h3{font-size:calc(15pt*var(--mg-s))}.mg-page.mg-print .mg-sec h4{font-size:calc(11pt*var(--mg-s))}
+.mg-page.mg-print select,.mg-page.mg-print input{display:none!important}
+.mg-page.mg-print .mg-pv{display:inline;margin:0;padding:0;border:0;background:none;font-size:1em;color:inherit}
+.mg-page.mg-print .mg-pv.tbd{font-weight:700}
+.mg-page.mg-print .mg-acts td:nth-child(3){width:10.5em}.mg-page.mg-print .mg-acts td:nth-child(4){width:6em}.mg-page.mg-print .mg-acts td:nth-child(5){width:6.6em}
+@page mgmt{size:A4 portrait;margin:12mm}
+@media print{
+  body.print-mgmt>*:not(main),body.print-mgmt main>*:not(#mgmt),body.print-mgmt #mgmt>*:not(#mgmtPage){display:none!important}
+  body.print-mgmt main{width:auto;margin:0;padding:0}
+  body.print-mgmt #mgmt{border:0!important;padding:0!important;margin:0!important;background:none!important}
+  body.print-mgmt #mgmt::before,body.print-mgmt #mgmt::after{display:none!important}
+  body.print-mgmt .mg-page{page:mgmt;--mg-s:var(--mg-ps,1)}
+  body.print-mgmt .mg-page{max-width:none;width:186mm;padding:0;box-shadow:none;border-radius:0;font-size:calc(9.6pt*var(--mg-s));background:#fff}
+  body.print-mgmt .mg-page h3{font-size:calc(15pt*var(--mg-s))}body.print-mgmt .mg-page .mg-sec h4{font-size:calc(11pt*var(--mg-s))}
+  body.print-mgmt .mg-page select,body.print-mgmt .mg-page input{display:none!important}
+  body.print-mgmt .mg-page .mg-pv{display:inline;margin:0;padding:0;border:0;background:none;font-size:1em;color:inherit}
+  body.print-mgmt .mg-page .mg-pv.tbd{font-weight:700}
+  body.print-mgmt .mg-page .mg-acts td:nth-child(3){width:10.5em}body.print-mgmt .mg-page .mg-acts td:nth-child(4){width:6em}body.print-mgmt .mg-page .mg-acts td:nth-child(5){width:6.6em}
+  .mg-page .mg-ref,.mg-page .mg-area{border-color:#999!important}
+}
 
 </style>
 </head>
@@ -1097,7 +1155,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
 </header>
 <nav class="rail" aria-label="功能導覽">
   <div class="wrap">
-    <a href="#machine">蒸汽主機</a><a href="#overview">營運總覽</a><a href="#import">資料匯入</a><a href="#mapping">欄位對應</a><a href="#filters">搜尋篩選</a><a href="#orders">訂單明細</a><a href="#sales">銷量分析</a><a href="#cross">客戶×產品</a><a href="#anomalies">異常清單<span class="badge" id="navAnomaly" hidden>0</span></a><a href="#backup">匯出與備份</a><a href="#consolidate">多檔彙整</a><a href="#consTrend">趨勢圖</a><a href="#reconcile">出貨核對</a><a href="#help">使用說明</a>
+    <a href="#machine">蒸汽主機</a><a href="#overview">營運總覽</a><a href="#import">資料匯入</a><a href="#mapping">欄位對應</a><a href="#filters">搜尋篩選</a><a href="#orders">訂單明細</a><a href="#sales">銷量分析</a><a href="#cross">客戶×產品</a><a href="#anomalies">異常清單<span class="badge" id="navAnomaly" hidden>0</span></a><a href="#backup">匯出與備份</a><a href="#consolidate">多檔彙整</a><a href="#consTrend">趨勢圖</a><a href="#reconcile">出貨核對</a><a href="#mgmt">管理摘要</a><a href="#help">使用說明</a>
   </div>
 </nav>
 <main class="wrap">
@@ -1470,8 +1528,21 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
     </div>
   </section>
 
+  <section class="panel" id="mgmt" aria-labelledby="mgTitle">
+    <div class="panel-head"><div><h2 class="plate"><span class="no">11</span><span id="mgTitle">管理摘要</span></h2><p class="lede">根據已核對的「多檔彙整」與「出貨核對」結果，自動整理成一頁：已知事實、待查問題、建議行動。每項事實都附日期、產線或資料編號；資料裡沒有的原因不寫成結論，一律列為待查問題。待辦的負責人與確認期限未指定時顯示「待確認」。</p></div></div>
+    <p class="small muted" id="mgmtEmpty">還沒有可整理的資料：先在「多檔彙整」匯入生產日報，或在「出貨核對」匯入出貨紀錄（需先有訂單）。衝突待確認與資料錯誤的列不會計入摘要的數字。</p>
+    <div class="mg-tools" id="mgmtTools" hidden>
+      <button type="button" data-mg="print">列印／存成 PDF（一頁）</button>
+      <button type="button" class="steel" data-mg="md">下載 Markdown（完整清單）</button>
+      <button type="button" class="steel" data-mg="copy">複製文字</button>
+      <button type="button" class="steel small" id="mgmtReset">清除待辦指派</button>
+      <p class="tiny muted">負責人、確認期限與改過的負責角色只存在這個瀏覽器（IndexedDB），不會上傳；匯出的摘要含訂單編號與數量，請妥善保存。</p>
+    </div>
+    <article class="mg-page" id="mgmtPage" aria-label="管理摘要（一頁）" hidden></article>
+  </section>
+
   <section class="panel" id="help" aria-labelledby="hTitle">
-    <div class="panel-head"><div><h2 class="plate"><span class="no">11</span><span id="hTitle">使用說明</span></h2><p class="lede">第一次使用請照以下步驟操作；全部功能都在這一頁，不需要登入。</p></div></div>
+    <div class="panel-head"><div><h2 class="plate"><span class="no">12</span><span id="hTitle">使用說明</span></h2><p class="lede">第一次使用請照以下步驟操作；全部功能都在這一頁，不需要登入。</p></div></div>
     <div class="help-grid">
       <div class="inset"><h3>操作步驟</h3><ol>
         <li>在「資料匯入」選擇訂單檔（CSV／XLSX／XLSM／PDF）。PDF 會先開啟擷取畫面，確認內容後再載入。Excel 有多個工作表時，選擇正確的工作表與標題所在列。</li>
@@ -1482,6 +1553,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
         <li>到「資料檢查與異常清單」處理問題資料。</li>
         <li>要核對出貨：在「訂單與出貨交叉核對」選出貨紀錄檔（需有出貨編號、訂單編號、出貨數量），系統以訂單編號對照、依出貨編號去重後加總，列出未出貨、部分出貨、全部出貨、出貨超量與單位不一致。</li>
         <li>要合併生產日報：在「資料匯入」選含日報工作表的 Excel（或多個日報 CSV），到「多檔彙整」確認工作表與欄位、處理衝突，再匯出明細、彙總表與異常清單。</li>
+        <li>要給主管看：核對完成後到「管理摘要」，系統把彙總結果整理成一頁（已知事實／待查問題／建議行動），可填負責人與確認期限，再列印成 PDF 或下載 Markdown。原因沒有資料來源時只列為待查問題。</li>
         <li>資料會自動保存在這個瀏覽器；要帶到別台電腦，請到「匯出與備份」下載 JSON 備份，再從「資料匯入」選擇這個備份檔還原。</li>
       </ol></div>
       <div class="inset"><h3>控制台可以這樣問</h3><ul>
@@ -1510,7 +1582,7 @@ body.motion-minimal .press-mini .pm-art .r::after,body.motion-minimal .press-min
     </div>
   </section>
 </main>
-<footer>蒸汽式智慧訂單管理系統 v14.0（VI-OMS MARK VIII） ／ Steam-Powered Intelligent Order Management System ／ 本機優先、離線可用 ／ 內含 JSZip 3.10.1（MIT）與 pdf.js 6.2.108（Apache-2.0）</footer>
+<footer>蒸汽式智慧訂單管理系統 v15.0（VI-OMS MARK VIII） ／ Steam-Powered Intelligent Order Management System ／ 本機優先、離線可用 ／ 內含 JSZip 3.10.1（MIT）與 pdf.js 6.2.108（Apache-2.0）</footer>
 <div id="modalRoot"></div>
 <div id="busy" class="busy" hidden role="status" aria-live="polite"></div>
 
@@ -1545,7 +1617,7 @@ const PDF_CMAPS={"Adobe-CNS1-0": "AuBSQ29weXJpZ2h0IDE5OTAtMjAwOSBBZG9iZSBTeXN0ZW
      → applyFilters() → computeAnalytics() → 表格／卡片／圖表／交叉表共用結果
    自然語言查詢：QueryParser（可替換）→ ParsedQuery → executeQuery()
    ===================================================================== */
-const APP = {name:'蒸汽式智慧訂單管理系統', version:'14.0'};
+const APP = {name:'蒸汽式智慧訂單管理系統', version:'15.0'};
 const $ = id => document.getElementById(id);
 const NF = new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2});
 const NF0 = new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0});
@@ -3305,11 +3377,12 @@ function setDataset(kind,table,meta,autoHeader){
 }
 async function clearAll(){
   const hasData=state.sources.order||state.sources.product||state.sources.customer||Cons.sheets.length||Ship.sheets.length;
-  if(hasData&&!await confirmModal('清除資料','會清除畫面上的訂單、產品主檔、客戶主檔、多檔彙整的日報、出貨紀錄，以及保存在這個瀏覽器裡的資料與條件設定（已下載的備份檔不受影響）。確定要清除嗎？','清除資料',true))return;
+  if(hasData&&!await confirmModal('清除資料','會清除畫面上的訂單、產品主檔、客戶主檔、多檔彙整的日報、出貨紀錄、管理摘要的待辦指派，以及保存在這個瀏覽器裡的資料與條件設定（已下載的備份檔不受影響）。確定要清除嗎？','清除資料',true))return;
   for(const k of ['order','product','customer']){state.sources[k]=null;state.rawCache[k]=null;state.mapping[k]={};state.manual[k]={};$('sheet-'+k).replaceChildren();updateSlot(k);}
   state.demo.clear();state.importInfo=null;state.filters=defaultFilters();state.sort={key:'original',dir:'asc'};state.history=[];syncFilterUI();renderMapping();rebuild();renderHistory();
   try{persistSoon.cancel();await IDB.del('workspace');await IDB.del('workspace-ui');setPersistMsg('已清除這個瀏覽器保存的資料。');}catch(e){setPersistMsg('清除瀏覽器保存的資料失敗：'+(e&&e.message||'未知原因'));}
   await consClear(false);await shipClear(false);
+  if(typeof mgClear==='function') await mgClear();
   const rep=$('importReport');if(rep){rep.hidden=true;rep.replaceChildren();}
   renderSourceInfo();
   setStatus('已清除資料（畫面與這個瀏覽器的保存都已清空）。','info');reply('資料已清除。請重新匯入公司資料檔。','warn');
@@ -4344,7 +4417,7 @@ function init(){
   buildConsole();
   renderImportSlots();renderMapping();buildExamples();bindFilters();bindControls();
   state.filters.dateField=defaultDateField();syncFilterUI();syncAnaControls();rebuild();renderHistory();
-  initPersistence();consInit();shipInit();
+  initPersistence();consInit();shipInit();try{bindMgmt();renderMgmt();}catch(e){console.warn('管理摘要初始化失敗',e);}
   setTimeout(()=>{if(isHosted())getDownloads().then(ns=>{if(!ns)document.querySelectorAll('[data-export],#backupBtn,#exportRank,#exportCross,#exportAnom').forEach(b=>b.title='此預覽環境無法下載檔案，按下後可改用複製內容');});},0);
 }
 /** 建立 MARK VIII 機械控制臺；任何繪製失敗都不影響資料功能 */
@@ -6029,6 +6102,7 @@ const td=(t,cls)=>h('td',{class:cls||null,text:t==null?'':String(t)});
 const numTd=v=>h('td',{class:'num',text:v==null||v===''?'—':fmt(v)});
 const fmtRate=v=>v==null||!Number.isFinite(v)?'—':v.toFixed(2)+'%';
 function renderCons(){
+  if(typeof renderMgmt==='function') renderMgmt();   // 管理摘要跟著彙整結果更新
   const box=$('consBody'); if(!box) return;
   const src=$('consSource');
   if(!Cons.sheets.length){
@@ -6390,6 +6464,7 @@ async function trendLoadUi(){if(Trend.loaded)return;Trend.loaded=true;try{const 
 async function trendReset(){Trend.mode='total';Trend.unit=null;Trend.hidden=new Set();Trend.day=null;Trend.unitLabel='';try{await IDB.del('trend-ui');}catch(e){}}
 let trendLast=null;
 function renderTrend(R){
+  if(typeof renderMgmt==='function') renderMgmt();
   const box=$('consTrendBox'); if(!box||!R) return;
   trendLoadUi();
   const T=trendCompute(R,{unit:Trend.unit,hidden:Trend.hidden}); trendLast={T,R};
@@ -6787,6 +6862,7 @@ function bindShip(){
 const sTd=(t,cls)=>h('td',{class:cls||null,text:t==null?'':String(t)});
 const sNum=(v,u)=>h('td',{class:'num',text:v==null||v===''?'—':fmt(v)+(u?' '+u:'')});
 function renderShip(){
+  if(typeof renderMgmt==='function') renderMgmt();   // 管理摘要跟著核對結果更新
   const box=$('shipBody'); if(!box) return;
   const src=$('shipSource');
   if(!Ship.sheets.length){
@@ -6885,9 +6961,255 @@ function renderShipAnom(R){
   if(R.anomalies.length>SHIP_SHOW.anom) tb.append(h('tr',{},h('td',{colspan:'8',class:'tiny muted',text:`畫面只顯示前 ${SHIP_SHOW.anom} 筆，完整清單請匯出。`})));
 }
 
+/* =====================================================================
+   管理摘要（一頁）
+   1. 根據已核對的彙總表（多檔彙整的日期×產線彙總、出貨核對結果）產出一頁管理摘要
+   2. 分成「已知事實」「待查問題」「建議行動（待辦）」；每項事實附日期、產線或資料編號
+   3. 沒有來源的原因不寫成結論：系統只陳述資料裡查得到的數字；原因一律列為待查問題
+   4. 待辦包含工作內容、建議負責角色、負責人與確認期限
+   5. 未指定人員或期限時，保留「待確認」
+   全部由目前資料即時產生；不寫死任何數字。
+   ===================================================================== */
+const MG_ROLES=['生管','品管','產線主管（日報填報）','業務','出貨承辦／倉管','資料管理員','部門主管','待確認'];
+const MG_CAP_MAX=6, MG_CAP_MIN=3, MG_SCALE_MIN=0.84;   // 一頁最多放 6 項／區；字級最小 84%（約 8pt）。放不下就減少項數，其餘寫在 Markdown
+const MG_TBD='待確認';
+const MG_FACT_ORDER=['P1','P2','S1','P4','S2','S5','P3','S4','S3','P5','S6','P6','P7'];
+const MG_Q_ORDER=['Q1','Q16','Q11','Q2','Q14','Q13','Q12','Q3','Q15','Q18','Q19','Q17','Q4','Q5','Q6','Q7'];   // 先列影響營運的，再列資料品質
+const Mg={edits:{},loaded:false,pending:0};
+const mgList=(a,n=3)=>a.slice(0,n).join('、')+(a.length>n?` 等 ${a.length} 筆`:'');
+const mgDate=iso=>iso?ymd(iso):'';
+const mdEsc=s=>String(s).replace(/[\\<>\[\]`*_]/g,'\\$&');   // Markdown 轉義：避免資料內容在 Markdown 檢視器中變成 HTML、連結或格式
+
+/** 純函式：由彙總結果產生事實、待查問題與待辦 */
+function mgmtCompute(ctx){
+  const facts=[],qs=[],acts=[];
+  const tidy=t=>t.replace(/([筆項）]) (?=[\u3400-\u9fff])/g,'$1');   // 「等 5 筆 已過」→「等 5 筆已過」
+  const F=(id,area,text,refs)=>{facts.push({id,area,text:tidy(text),refs:[...new Set(refs.filter(Boolean))]});return id;};
+  const Q=(id,area,text,refs,basis)=>{qs.push({id,area,text:tidy(text),refs:[...new Set(refs.filter(Boolean))],basis:basis||''});return id;};
+  const A=(id,task,role,basis)=>{task=tidy(task);acts.push({id,key:id+'|'+task,task,role,basis});};   // 指派依「工作內容」保存：資料換了、內容不同就不沿用舊的負責人
+  const status=[];
+  /* ---------- 生產日報（多檔彙整） ---------- */
+  const R=ctx.cons;
+  if(R&&R.summary.length){
+    const T=trendCompute(R,{unit:ctx.unit,hidden:new Set()});
+    const u=trendUnitText(T)?' '+trendUnitText(T):'';
+    // 已核對的列（正常＋已選定版本），多種單位時只取目前單位，與趨勢圖一致
+    const rowsU=R.rows.filter(r=>(r.status==='ok'||r.status==='conflict-used')&&(!T.multiUnit||unitKeyOf(r.unit)===T.unit));
+    const G=new Map(), LT=new Map();
+    for(const r of rowsU){
+      const k=r.date+'\u0000'+r.lineKey;
+      if(!G.has(k))G.set(k,{date:r.date,line:r.line,lineKey:r.lineKey,done:0,ng:0,rids:[]});
+      const g=G.get(k); g.done=r9(g.done+r.done); g.ng=r9(g.ng+r.ng); g.rids.push(r.ridRaw);
+      if(!LT.has(r.lineKey))LT.set(r.lineKey,{label:r.line,done:0,ng:0,days:new Set()});
+      const t=LT.get(r.lineKey); t.done=r9(t.done+r.done); t.ng=r9(t.ng+r.ng); t.days.add(r.date);
+    }
+    const groups=[...G.values()].map(g=>({...g,rate:g.done>0?g.ng/g.done*100:null}));
+    const lineTot=[...LT.values()].map(t=>({...t,rate:t.done>0?t.ng/t.done*100:null})).sort((a,b)=>collator.compare(a.label,b.label));
+    const have=T.days.filter(d=>!d.missing), miss=T.days.filter(d=>d.missing);
+    const period=`${mgDate(T.days[0].date)}～${mgDate(T.days[T.days.length-1].date)}`;
+    const pending=R.conflicts.filter(c=>!c.chosen), err=R.rows.filter(r=>r.status==='error');
+    status.push(`生產日報：${ctx.consFiles.join('、')||'（檔名未記錄）'}（匯入 ${ctx.consAt?fmtTaipei(ctx.consAt):'時間未記錄'}）`+(pending.length||err.length?`；${pending.length} 組回報編號衝突待確認、${err.length} 列資料錯誤，均未計入`:'；沒有待確認的衝突或資料錯誤'));
+    const lines=lineTot.map(t=>t.label);
+    F('P1','生產',`生產日報期間 ${period}（有資料 ${have.length} 天${miss.length?`、無資料 ${miss.length} 天`:''}），計入 ${fmt(T.tot.count)} 筆回報，產線 ${mgList(lines,6)}。`,[period,...lines.slice(0,6)]);
+    F('P2','生產',`合計完成量 ${fmt(T.tot.done)}${u}、不良量 ${fmt(T.tot.ng)}${u}，整體不良率 ${pct2(T.tot.rate)}（${fmt(T.tot.ng)} ÷ ${fmt(T.tot.done)}）${T.multiUnit?`；只含單位「${T.unit||'未標單位'}」`:''}。`,[period]);
+    if(lineTot.length>1){
+      const lt=lineTot.filter(t=>t.rate!=null).sort((a,b)=>b.rate-a.rate||collator.compare(a.label,b.label));
+      F('P3','生產',`各產線不良率（高到低）：${lt.slice(0,6).map(t=>`${t.label} ${pct2(t.rate)}（${fmt(t.ng)} ÷ ${fmt(t.done)}）`).join('、')}${lt.length>6?'…':''}。`,[period,...lt.slice(0,6).map(t=>t.label)]);
+    }
+    const rated=groups.filter(g=>g.rate!=null);
+    let topG=null;
+    if(rated.length){
+      const mx=Math.max(...rated.map(g=>g.rate)); const top=rated.filter(g=>Math.abs(g.rate-mx)<1e-9).sort((a,b)=>a.date.localeCompare(b.date)||collator.compare(a.line,b.line));
+      topG=top[0];
+      F('P4','生產',`不良率最高的日期×產線：${top.slice(0,3).map(g=>`${mgDate(g.date)} ${g.line} ${pct2(g.rate)}（${fmt(g.ng)} ÷ ${fmt(g.done)}；回報編號 ${mgList(g.rids,3)}）`).join('、')}${top.length>1?'（並列）':''}。`,[...new Set(top.slice(0,3).map(g=>mgDate(g.date))),...new Set(top.slice(0,3).map(g=>g.line)),...top[0].rids.slice(0,3)]);
+      if(T.tot.rate!=null&&rated.length>1){
+        const above=rated.filter(g=>g.rate>T.tot.rate).sort((a,b)=>b.rate-a.rate||a.date.localeCompare(b.date));
+        if(above.length>1&&above.length<rated.length) F('P5','生產',`不良率高於整體 ${pct2(T.tot.rate)} 的日期×產線共 ${above.length}／${rated.length} 組，最高 3 組：${above.slice(0,3).map(g=>`${mgDate(g.date)} ${g.line} ${pct2(g.rate)}`).join('、')}。`,[...new Set(above.slice(0,3).map(g=>mgDate(g.date))),...new Set(above.slice(0,3).map(g=>g.line))]);
+      }
+    }
+    if(have.length>=2){const mx=Math.max(...have.map(d=>d.done)),mn=Math.min(...have.map(d=>d.done));
+      if(mx!==mn){const hi=have.filter(d=>d.done===mx),lo=have.filter(d=>d.done===mn);F('P6','生產',`每日完成量最高 ${hi.slice(0,3).map(d=>mgDate(d.date)).join('、')} ${fmt(mx)}${u}，最低 ${lo.slice(0,3).map(d=>mgDate(d.date)).join('、')} ${fmt(mn)}${u}。`,[...hi.slice(0,3),...lo.slice(0,3)].map(d=>mgDate(d.date)));}}
+    if(R.dupGroups){const ids=[...new Set(R.rows.filter(r=>r.status==='dup').map(r=>r.ridRaw))];F('P7','生產',`重複回報 ${R.dupGroups} 組（回報編號 ${mgList(ids,5)}）內容相同，已只計一次。`,ids.slice(0,5));}
+    // ---- 待查問題（原因一律不下結論）----
+    if(topG){
+      Q('Q1','生產',`${mgDate(topG.date)} ${topG.line} 不良率 ${pct2(topG.rate)} 為期間最高，原因未知：彙總表只有數量，不能據以判斷原因；需查當天的品項、原料批號、設備與人員紀錄${R.extraCols.length?`（日報另有「${R.extraCols.slice(0,3).map(x=>x.h).join('」「')}」欄可對照，但不視為原因）`:''}。`,[mgDate(topG.date),topG.line,...topG.rids.slice(0,3)],'P4');
+      A('A-rate',`調閱 ${mgDate(topG.date)} ${topG.line} 的品項、原料批號、設備與人員紀錄，查明不良率偏高的原因並回報；查明前不列為結論`,'品管','Q1');
+    }
+    if(pending.length){
+      const ids=pending.map(c=>c.ridRaw);
+      Q('Q2','生產',`回報編號 ${mgList(ids,5)} 在不同來源的內容不同（差異欄位：${[...new Set(pending.flatMap(c=>c.diffLabels))].join('、')}），哪一版正確？目前都未計入。`,ids.slice(0,5));
+      A('A-conflict',`向日報填報人確認 ${mgList(ids,5)} 的正確內容，在「多檔彙整」選擇採用版本，或修正原始日報後重新匯入`,'產線主管（日報填報）','Q2');
+    }
+    if(err.length){
+      const it=err.slice(0,3).map(r=>`${r.ridRaw||'（無編號）'}（${r.errors[0]?.[1]||'資料錯誤'}，${r.label} 第 ${r.rowNum} 列）`);
+      Q('Q3','生產',`日報有 ${err.length} 列資料錯誤未計入：${it.join('、')}${err.length>3?'…':''}。正確數字為何？`,err.slice(0,3).map(r=>r.ridRaw||`${r.label} 第 ${r.rowNum} 列`));
+      A('A-error',`補正 ${err.length} 列有問題的日報（${mgList(err.map(r=>r.ridRaw||`${r.label} 第 ${r.rowNum} 列`),3)}）後重新匯入`,'產線主管（日報填報）','Q3');
+    }
+    const rm=R.anomalies.filter(a=>a.type.startsWith('原表不良率與計算不一致'));
+    if(rm.length){Q('Q4','生產',`原表填寫的不良率與「不良量 ÷ 完成量」不一致 ${rm.length} 列（回報編號 ${mgList(rm.map(a=>a.rid),3)}）：原表百分比的算法為何？彙總一律用數量重算。`,rm.slice(0,3).map(a=>a.rid));
+      A('A-ratemis',`確認原表不良率的計算方式（${mgList(rm.map(a=>a.rid),3)}），日後統一以「不良量 ÷ 完成量」填寫`,'產線主管（日報填報）','Q4');}
+    if(miss.length){Q('Q5','生產',`${mgList(miss.map(d=>mgDate(d.date)),5)} 沒有任何日報：是停工、休假，還是漏報？`,miss.slice(0,5).map(d=>mgDate(d.date)));
+      A('A-miss',`確認 ${mgList(miss.map(d=>mgDate(d.date)),5)} 是否停工；若為漏報，補登日報後重新匯入`,'生管','Q5');}
+    if(lineTot.length>1){const gaps=lineTot.filter(t=>t.days.size<have.length);
+      if(gaps.length){Q('Q6','生產',`${gaps.slice(0,3).map(t=>`${t.label} 只有 ${t.days.size}／${have.length} 天有資料`).join('、')}：缺的日子是沒開線還是沒回報？`,gaps.slice(0,3).map(t=>t.label));
+        A('A-gap',`確認 ${mgList(gaps.map(t=>t.label),3)} 缺資料的日子是否有生產；有生產則補登日報`,'生管','Q6');}}
+    if(T.multiUnit){Q('Q7','生產',`完成量有多種單位（${T.unitList.map(x=>x||'未標單位').join('、')}），換算方式為何？上述生產數字只含「${T.unit||'未標單位'}」。`,T.unitList.filter(Boolean));A('A-unit','確認日報各單位的換算方式，必要時統一日報單位','生管','Q7');}
+    else if(!T.unit){Q('Q7','生產','日報沒有單位欄：完成量是以個、組還是其他單位計算？',[period]);A('A-unit','在日報加上「單位」欄，或確認完成量的計量單位','生管','Q7');}
+  }
+  /* ---------- 出貨核對 ---------- */
+  const S=ctx.ship;
+  if(S&&S.used.length){
+    if(S.noOrders) status.push(`出貨紀錄：${ctx.shipFiles.join('、')}；尚未匯入訂單，無法核對，出貨部分不列入摘要`);
+    else{
+      const ts=S.targetStats, rs=S.rowStats;
+      const pend=S.conflicts.filter(c=>!c.chosen), se=S.rows.filter(r=>r.status==='error');
+      status.push(`出貨核對：訂單 ${(ctx.orderFiles||[]).join('、')||'（目前的訂單資料）'} × 出貨紀錄 ${ctx.shipFiles.join('、')||'（檔名未記錄）'}（匯入 ${ctx.shipAt?fmtTaipei(ctx.shipAt):'時間未記錄'}）`+(pend.length||se.length?`；${pend.length} 組出貨編號衝突待確認、${se.length} 列資料錯誤，均未計入`:'；沒有待確認的衝突或資料錯誤'));
+      const at=ctx.shipAt?`出貨紀錄匯入 ${mgDate(isoOf(new Date(ctx.shipAt)))}`:'';
+      const counted=r=>r.status==='ok'||r.status==='conflict-used';
+      const shipsOf=t=>S.rows.filter(r=>r.target===t&&counted(r)).map(r=>r.shipNoRaw);
+      F('S1','出貨',`核對訂單 ${fmt(S.targets.length)} 項：全部出貨 ${ts.full}、部分出貨 ${ts.partial}、未出貨 ${ts.none}、出貨超量 ${ts.over}、單位不一致 ${ts.unit}${ts.badqty?`、訂單數量有誤 ${ts.badqty}`:''}（出貨紀錄 ${fmt(S.rows.length)} 列，其中重複 ${rs.dup||0} 列只計一次）。`,[at,...ctx.shipFiles.slice(0,3)]);
+      const over=S.targets.filter(t=>t.status==='over');
+      if(over.length){
+        F('S2','出貨',`出貨超量：${over.slice(0,3).map(t=>`${t.orderNo} 訂 ${fmt(t.qty)} ${t.unit}、累計出貨 ${fmt(t.shipped)} ${t.unit}（超出 ${fmt(t.over)}；出貨編號 ${mgList(shipsOf(t),3)}）`).join('；')}${over.length>3?`；另有 ${over.length-3} 項`:''}。`,[...over.slice(0,3).map(t=>t.orderNo),...over.slice(0,2).flatMap(t=>shipsOf(t).slice(0,3))]);
+        Q('Q11','出貨',`${mgList(over.map(t=>`${t.orderNo}（超出 ${fmt(t.over)} ${t.unit}）`),3)}：是客戶同意的超交、補貨，還是出貨登錄錯誤？`,over.slice(0,3).map(t=>t.orderNo),'S2');
+        A('A-over',`查明 ${mgList(over.map(t=>t.orderNo),3)} 超出的數量；登錄錯誤則更正出貨紀錄，超交則請客戶確認`,'出貨承辦／倉管','Q11');
+      }
+      const um=S.targets.filter(t=>t.status==='unit');
+      if(um.length){
+        const mis=t=>S.rows.filter(r=>r.target===t&&r.status==='unitmis');
+        F('S3','出貨',`單位不一致、未相減：${um.slice(0,3).map(t=>`${t.orderNo} 訂單單位「${t.unitMixed?'多種':t.unit||'未標'}」，出貨 ${mis(t).slice(0,3).map(r=>`${r.shipNoRaw} ${fmt(r.qty)} ${r.unit||'未標'}`).join('、')}`).join('；')}${um.length>3?`；另有 ${um.length-3} 項`:''}。`,[...um.slice(0,3).map(t=>t.orderNo),...um.slice(0,2).flatMap(t=>mis(t).slice(0,2).map(r=>r.shipNoRaw))]);
+        Q('Q12','出貨',`${mgList(um.map(t=>t.orderNo),3)} 的訂單與出貨單位不同，換算方式為何（例如 1 組＝幾個）？`,um.slice(0,3).map(t=>t.orderNo),'S3');
+        A('A-unit-ship',`確認 ${mgList(um.map(t=>t.orderNo),3)} 的單位換算，更正出貨紀錄的單位或數量`,'業務','Q12');
+      }
+      const no=S.rows.filter(r=>r.status==='noorder');
+      if(no.length){
+        F('S4','出貨',`訂單資料查不到的出貨 ${no.length} 筆：${no.slice(0,3).map(r=>`${r.shipNoRaw}（訂單編號 ${r.orderNoRaw}，${fmt(r.qty)}${r.unit?' '+r.unit:''}）`).join('、')}${no.length>3?'…':''}，未併入任何訂單。`,[...no.slice(0,3).map(r=>r.shipNoRaw),...no.slice(0,3).map(r=>r.orderNoRaw)]);
+        Q('Q13','出貨',`${mgList(no.map(r=>`${r.shipNoRaw}（${r.orderNoRaw}）`),3)} 的訂單編號在訂單資料中找不到：是編號打錯，還是訂單沒有匯入？`,no.slice(0,3).map(r=>r.shipNoRaw),'S4');
+        A('A-noorder',`查明 ${mgList(no.map(r=>r.shipNoRaw),3)} 對應的訂單，更正訂單編號或補匯入訂單`,'出貨承辦／倉管','Q13');
+      }
+      const amb=S.rows.filter(r=>r.status==='ambig');
+      if(amb.length){Q('Q17','出貨',`${mgList(amb.map(r=>`${r.shipNoRaw}（${r.ambigWhy}）`),3)}：對應哪個品項？目前未計入。`,amb.slice(0,3).map(r=>r.shipNoRaw));
+        A('A-ambig',`在出貨紀錄補上 ${mgList(amb.map(r=>r.shipNoRaw),3)} 的產品編號`,'出貨承辦／倉管','Q17');}
+      if(pend.length){Q('Q14','出貨',`出貨編號 ${mgList(pend.map(c=>c.shipNoRaw),3)} 有兩筆以上內容不同（差異欄位：${[...new Set(pend.flatMap(c=>c.diffs))].join('、')}），哪一筆正確？目前都未計入。`,pend.slice(0,3).map(c=>c.shipNoRaw));
+        A('A-shipconf',`確認 ${mgList(pend.map(c=>c.shipNoRaw),3)} 的正確內容，在「出貨核對」選擇採用版本或更正原始紀錄`,'出貨承辦／倉管','Q14');}
+      if(se.length){Q('Q15','出貨',`出貨紀錄有 ${se.length} 列資料錯誤未計入：${se.slice(0,3).map(r=>`${r.shipNoRaw||'（無出貨編號）'}（${r.errors[0]?.[1]||'資料錯誤'}，${r.label} 第 ${r.rowNum} 列）`).join('、')}${se.length>3?'…':''}。正確內容為何？`,se.slice(0,3).map(r=>r.shipNoRaw||`${r.label} 第 ${r.rowNum} 列`));
+        A('A-shiperr',`補正 ${se.length} 列有問題的出貨紀錄後重新匯入`,'出貨承辦／倉管','Q15');}
+      const canc=S.targets.filter(t=>t.cancelled&&(t.shipped>0||t.mis.size));
+      if(canc.length){Q('Q18','出貨',`${mgList(canc.map(t=>t.orderNo),3)} 在訂單資料為「已取消」，但有出貨紀錄：是取消前已出貨，還是狀態未更新？`,canc.slice(0,3).map(t=>t.orderNo));
+        A('A-cancel',`確認 ${mgList(canc.map(t=>t.orderNo),3)} 的訂單狀態與出貨紀錄何者正確`,'業務','Q18');}
+      const ghost=S.targets.filter(t=>t.statusShipped&&t.count===0);
+      if(ghost.length){Q('Q19','出貨',`${mgList(ghost.map(t=>t.orderNo),3)} 在訂單資料標示「已出貨」，出貨紀錄卻沒有：是出貨紀錄漏登，還是狀態填錯？`,ghost.slice(0,3).map(t=>t.orderNo));
+        A('A-ghost',`補登 ${mgList(ghost.map(t=>t.orderNo),3)} 的出貨紀錄，或更正訂單狀態`,'出貨承辦／倉管','Q19');}
+      // 預備出貨日已過仍未全部出貨（已取消的不算）
+      const today=ctx.today;
+      const dueOf=t=>t.lines.map(l=>l.sd&&l.sd.st==='ok'?l.sd.iso:'').filter(Boolean).sort()[0]||'';
+      const late=S.targets.filter(t=>!t.cancelled&&(t.status==='none'||t.status==='partial')&&dueOf(t)&&dueOf(t)<today).sort((a,b)=>dueOf(a).localeCompare(dueOf(b))||collator.compare(a.orderNo,b.orderNo));
+      if(late.length){
+        F('S5','出貨',`預備出貨日已過（今天 ${mgDate(today)}）仍未全部出貨的訂單 ${late.length} 項：${late.slice(0,3).map(t=>`${t.orderNo}（預備出貨日 ${mgDate(dueOf(t))}，未出貨 ${fmt(t.unshipped)} ${t.unit}）`).join('、')}${late.length>3?'…':''}。`,[mgDate(today),...late.slice(0,3).map(t=>t.orderNo)]);
+        Q('Q16','出貨',`${mgList(late.map(t=>t.orderNo),3)} 已過預備出貨日仍未全部出貨：是否已與客戶確認新的出貨日？`,late.slice(0,3).map(t=>t.orderNo),'S5');
+        A('A-late',`與客戶確認 ${mgList(late.map(t=>t.orderNo),3)} 新的出貨日並安排出貨`,'業務','Q16');
+      }
+      const byU=new Map(); let nU=0; for(const t of S.targets) if(t.unshipped>0&&!t.cancelled){nU++;const k=t.unit||'（未標單位）';byU.set(k,r9((byU.get(k)||0)+t.unshipped));}
+      if(byU.size) F('S6','出貨',`尚未出貨數量合計 ${[...byU].map(([k,v])=>`${fmt(v)} ${k}`).join('、')}（${nU} 項訂單；不含已取消與單位不一致的訂單）。`,[at]);
+    }
+  }
+  // 依重要度排序（一頁只放前幾項；完整清單在 Markdown）。編號 F／Q 依排序後的順序。
+  const rank=(order,id)=>{const i=order.indexOf(id);return i<0?99:i;};
+  facts.sort((a,b)=>rank(MG_FACT_ORDER,a.id)-rank(MG_FACT_ORDER,b.id));
+  qs.sort((a,b)=>rank(MG_Q_ORDER,a.id)-rank(MG_Q_ORDER,b.id));
+  acts.sort((a,b)=>rank(MG_Q_ORDER,a.basis)-rank(MG_Q_ORDER,b.basis));
+  return {facts,questions:qs,actions:acts,status};
+}
+
+/* ---------- 畫面 ---------- */
+function mgCtx(){return {cons:Cons.result,consFiles:Cons.files,consAt:Cons.at,unit:Trend.unit,ship:Ship.result,shipFiles:Ship.files,shipAt:Ship.at,orderFiles:state.importInfo?.files,today:isoOf(todayLocal())};}
+async function mgLoad(){if(Mg.loaded)return;Mg.loaded=true;try{const o=await IDB.get('mgmt-ui');if(o&&o.edits&&typeof o.edits==='object'){for(const [k,v] of Object.entries(o.edits))if(v&&typeof v==='object')Mg.edits[String(k).slice(0,600)]={role:typeof v.role==='string'&&MG_ROLES.includes(v.role)?v.role:undefined,owner:typeof v.owner==='string'?v.owner.slice(0,40):'',due:/^\d{4}-\d{2}-\d{2}$/.test(v.due||'')?v.due:'',t:Number.isFinite(v.t)?v.t:0};renderMgmt();}}catch(e){}}
+function mgSave(){const ks=Object.keys(Mg.edits);if(ks.length>300){ks.sort((a,b)=>(Mg.edits[a].t||0)-(Mg.edits[b].t||0)).slice(0,ks.length-300).forEach(k=>delete Mg.edits[k]);}try{IDB.put('mgmt-ui',{edits:Mg.edits});}catch(e){}}
+function renderMgmt(){clearTimeout(Mg.pending);Mg.pending=setTimeout(renderMgmtNow,0);}
+function mgAct(a){const e=Mg.edits[a.key]||{};return {...a,role:e.role||a.role,owner:(e.owner||'').trim(),due:e.due||''};}
+function renderMgmtNow(){
+  const box=$('mgmtPage'); if(!box) return; mgLoad();
+  const M=mgmtCompute(mgCtx()); Mg.last=M;
+  const empty=!M.facts.length;
+  $('mgmtEmpty').hidden=!empty; box.hidden=empty; $('mgmtTools').hidden=empty;
+  if(empty) return;
+  const now=fmtTaipei(new Date().toISOString());
+  const build=cap=>{
+  const ref=refs=>refs.length?h('span',{class:'mg-refs'},...refs.map(r=>h('span',{class:'mg-ref',text:r}))):null;
+  const more=(n,cap)=>n>cap?h('p',{class:'mg-more',text:`另有 ${n-cap} 項，完整內容請下載 Markdown。`}):null;
+  const qIndex=Object.fromEntries(M.questions.map((q,i)=>[q.id,'Q'+(i+1)])), fIndex=Object.fromEntries(M.facts.map((f,i)=>[f.id,'F'+(i+1)]));
+  const actRow=(a0,i)=>{const a=mgAct(a0);
+    const role=h('select',{'aria-label':`第 ${i+1} 項待辦的建議負責角色`},...[...new Set([a0.role,...MG_ROLES])].map(r=>h('option',{value:r,text:r+(r===a0.role?'（建議）':'')})));role.value=a.role;
+    const owner=h('input',{type:'text',maxlength:'40',placeholder:MG_TBD,value:a.owner,'aria-label':`第 ${i+1} 項待辦的負責人`});
+    const due=h('input',{type:'date',value:a.due,'aria-label':`第 ${i+1} 項待辦的確認期限`});
+    const pv=(t)=>h('span',{class:'mg-pv'+(t===MG_TBD?' tbd':''),text:t});
+    const pRole=pv(a.role), pOwner=pv(a.owner||MG_TBD), pDue=pv(a.due?ymd(a.due):MG_TBD);
+    const upd=()=>{Mg.edits[a0.key]={role:role.value,owner:owner.value.trim(),due:due.value,t:Date.now()};pRole.textContent=role.value;pRole.classList.toggle('tbd',role.value===MG_TBD);pOwner.textContent=owner.value.trim()||MG_TBD;pOwner.classList.toggle('tbd',!owner.value.trim());pDue.textContent=due.value?ymd(due.value):MG_TBD;pDue.classList.toggle('tbd',!due.value);mgSave();};
+    role.addEventListener('change',upd);owner.addEventListener('input',upd);due.addEventListener('change',upd);
+    return h('tr',{'data-id':a0.id,'data-key':a0.key},h('td',{class:'num',text:String(i+1)}),h('td',{text:a.task}),h('td',{},role,pRole),h('td',{},owner,pOwner),h('td',{},due,pDue),h('td',{class:'mg-basis',text:qIndex[a.basis]||''}));};
+  box.replaceChildren(
+    h('header',{class:'mg-head'},h('h3',{text:'管理摘要'}),h('p',{class:'mg-meta',text:`產生時間 ${now}（台灣時間）　編製：系統依目前資料自動產生　審閱：待確認`}),
+      h('ul',{class:'mg-status'},...M.status.map(t=>h('li',{text:t})))),
+    h('section',{class:'mg-sec'},h('h4',{text:'一、已知事實'}),h('p',{class:'mg-note',text:'只列資料中查得到的數字；每項附日期、產線或資料編號。'}),
+      h('ol',{class:'mg-facts'},...M.facts.slice(0,cap).map((f,i)=>h('li',{'data-id':f.id},h('b',{class:'mg-no',text:'F'+(i+1)}),h('span',{class:'mg-area',text:f.area}),f.text,ref(f.refs)))),more(M.facts.length,cap)),
+    h('section',{class:'mg-sec'},h('h4',{text:'二、待查問題'}),h('p',{class:'mg-note',text:'原因沒有資料來源前不下結論，一律列在這裡。'}),
+      M.questions.length?h('ol',{class:'mg-qs'},...M.questions.slice(0,cap).map((q,i)=>h('li',{'data-id':q.id},h('b',{class:'mg-no',text:'Q'+(i+1)}),h('span',{class:'mg-area',text:q.area}),q.text,q.basis&&fIndex[q.basis]?h('span',{class:'mg-basis-inline',text:`（依據 ${fIndex[q.basis]}）`}):null,ref(q.refs)))):h('p',{class:'mg-none',text:'目前沒有待查問題。'}),more(M.questions.length,cap)),
+    h('section',{class:'mg-sec'},h('h4',{text:'三、建議行動（待辦）'}),h('p',{class:'mg-note',text:'負責角色為系統建議，可改；負責人與確認期限未指定時保留「待確認」。'}),
+      M.actions.length?h('table',{class:'mg-acts'},h('thead',{},h('tr',{},...['#','工作內容','建議負責角色','負責人','確認期限','依據'].map(t=>h('th',{text:t})))),h('tbody',{},...M.actions.slice(0,cap).map(actRow))):h('p',{class:'mg-none',text:'目前沒有待辦。'}),more(M.actions.length,cap)),
+    h('footer',{class:'mg-foot',text:'本摘要的數字依「多檔彙整」與「出貨核對」目前的資料即時計算，未計入衝突待確認與資料錯誤的列；資料更新後請重新列印。原因需另行查證，未列為結論。'}));
+  };
+  // 畫面與列印放同樣的項目：先用列印版樣式量高度，A4 一頁放不下就減少每區項數
+  let cap=MG_CAP_MAX; build(cap);
+  if(!box.isConnected||!box.getClientRects().length){Mg.cap=cap;return;}
+  box.classList.add('mg-print'); mgFit();
+  while(!Mg.fits&&cap>MG_CAP_MIN){cap--;build(cap);mgFit();}
+  box.classList.remove('mg-print'); box.style.removeProperty('--mg-s'); Mg.cap=cap;
+}
+function mgMarkdown(M){
+  const esc=s=>mdEsc(s).replace(/\|/g,'／').replace(/\n/g,' ');
+  const fIdx=Object.fromEntries(M.facts.map((f,i)=>[f.id,'F'+(i+1)]));
+  const L=['# 管理摘要','',`產生時間：${fmtTaipei(new Date().toISOString())}（台灣時間）　編製：系統依目前資料自動產生　審閱：待確認`,'',...M.status.map(t=>`- ${mdEsc(t)}`),'','## 一、已知事實','',
+    ...M.facts.map((f,i)=>`${i+1}. **F${i+1}**〔${f.area}〕${mdEsc(f.text)}${f.refs.length?`　〔${mdEsc(f.refs.join('｜'))}〕`:''}`),'','## 二、待查問題','',
+    ...(M.questions.length?M.questions.map((q,i)=>`${i+1}. **Q${i+1}**〔${q.area}〕${mdEsc(q.text)}${q.basis&&fIdx[q.basis]?`（依據 ${fIdx[q.basis]}）`:''}${q.refs.length?`　〔${mdEsc(q.refs.join('｜'))}〕`:''}`):['（目前沒有）']),'','## 三、建議行動（待辦）','',
+    '| # | 工作內容 | 建議負責角色 | 負責人 | 確認期限 | 依據 |','|---|---|---|---|---|---|'];
+  const qIndex=Object.fromEntries(M.questions.map((q,i)=>[q.id,'Q'+(i+1)]));
+  M.actions.forEach((a0,i)=>{const a=mgAct(a0);L.push(`| ${i+1} | ${esc(a.task)} | ${esc(a.role)} | ${esc(a.owner||MG_TBD)} | ${a.due?ymd(a.due):MG_TBD} | ${qIndex[a.basis]||''} |`);});
+  if(!M.actions.length) L.push('| — | 目前沒有待辦 | | | | |');
+  L.push('','> 數字依目前資料即時計算，未計入衝突待確認與資料錯誤的列。原因需另行查證，未列為結論。');
+  return L.join('\n')+'\n';
+}
+async function mgExport(kind){
+  const M=Mg.last||mgmtCompute(mgCtx()); if(!M.facts.length){setStatus('還沒有可產生摘要的資料。','warn');return;}
+  if(kind==='md') return saveFile(`管理摘要_${stamp()}.md`,new Blob([mgMarkdown(M)],{type:'text/markdown;charset=utf-8'}));
+  if(kind==='copy'){const t=mgMarkdown(M);try{await navigator.clipboard.writeText(t);setStatus('已複製管理摘要（Markdown 格式），可貼到 Email、Teams 或文件。','ok');}catch(e){const ta=h('textarea',{class:'sr-only'});ta.value=t;document.body.append(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(x){}ta.remove();setStatus(ok?'已複製管理摘要。':'這個瀏覽器不允許複製，請改用「下載 Markdown」。',ok?'ok':'warn');}return;}
+  if(kind==='print'){
+    renderMgmtNow(); mgPrintPrep();
+    const done=()=>{mgPrintDone();window.removeEventListener('afterprint',done);};
+    window.addEventListener('afterprint',done);
+    try{window.print();}catch(e){done();setStatus('這個環境不允許列印，請改用「下載 Markdown」。','warn');}
+  }
+}
+/** 列印前：套用列印版樣式，量高度；超過一頁就逐步縮小字級（最小 84%）；仍放不下時 renderMgmtNow 已減少項數 */
+const MG_A4_H=(297-24)/25.4*96;   // A4 直式扣掉上下邊界 12mm，CSS px
+function mgFit(){
+  const p=$('mgmtPage'); if(!p||p.hidden) return 1;
+  let sc=1; p.style.setProperty('--mg-s','1');
+  while(p.scrollHeight>MG_A4_H-8&&sc>MG_SCALE_MIN){sc=Math.round((sc-0.04)*100)/100;p.style.setProperty('--mg-s',String(sc));}
+  Mg.scale=sc; Mg.fits=p.scrollHeight<=MG_A4_H-8; return sc;
+}
+// 列印樣式只在 @media print 生效（body.print-mgmt）；就算瀏覽器沒有送出 afterprint，畫面也不受影響
+function mgPrintPrep(){const p=$('mgmtPage');if(!p)return;p.classList.add('mg-print');mgFit();p.classList.remove('mg-print');p.style.removeProperty('--mg-s');p.style.setProperty('--mg-ps',String(Mg.scale));document.body.classList.add('print-mgmt');if(!Mg.fits)setStatus('摘要內容較多，縮到最小字級仍超過一頁；完整內容請改用「下載 Markdown」。','warn');}
+function mgPrintDone(){document.body.classList.remove('print-mgmt');}
+async function mgClear(){Mg.edits={};try{await IDB.del('mgmt-ui');}catch(e){}renderMgmt();}
+function bindMgmt(){
+  const p=$('mgmt'); if(!p||p.dataset.bound) return; p.dataset.bound='1';
+  p.addEventListener('click',e=>{const b=e.target.closest('[data-mg]');if(b)mgExport(b.dataset.mg);});
+  $('mgmtReset')?.addEventListener('click',async()=>{if(!Object.keys(Mg.edits).length)return;if(!await confirmModal('清除待辦的指派','會清除你填的負責人、確認期限與改過的負責角色，全部回到「待確認」。','清除指派',true))return;Mg.edits={};mgSave();renderMgmtNow();});
+}
+
 /* 啟動（放在最後，確保所有模組都已定義） */
 window.VIOMS={state,RuleParser,setQueryParser,parseDate,parseNumber,classifyStatus,runNL,executeQuery,refresh,rebuild,makeBackup,parseBackup,applyBackup,buildXlsx,orderExport,rankExport,crossExport,anomExport,toCsv,computeAnalytics,rankedProducts,
-  Machine,Lever,Faders,Printer,SFX,Analyzer,Feed,Align,Vault,GEARS,describeParsed,visibleRanking,dateWindowFor,importFiles,fmtQ,fmtDate,unitsInData,IDB,persistNow,fmtTaipei,Cons,consCompute,consDetect,dailyAutoMap,consRecompute,consExport,consDetailExport,consSummaryExport,consAnomExport,consGroupKey,Ship,shipCompute,shipRecompute,shipExport,shipResultExport,shipRowsExport,shipAnomExport,Trend,trendCompute,trendInsights,trendExport,trendDownload,renderTrend,TW,twCandidates,PressFollow};
+  Machine,Lever,Faders,Printer,SFX,Analyzer,Feed,Align,Vault,GEARS,describeParsed,visibleRanking,dateWindowFor,importFiles,fmtQ,fmtDate,unitsInData,IDB,persistNow,fmtTaipei,Cons,consCompute,consDetect,dailyAutoMap,consRecompute,consExport,consDetailExport,consSummaryExport,consAnomExport,consGroupKey,Ship,shipCompute,shipRecompute,shipExport,shipResultExport,shipRowsExport,shipAnomExport,Trend,trendCompute,trendInsights,trendExport,trendDownload,renderTrend,TW,twCandidates,PressFollow,Mg,mgmtCompute,mgMarkdown,mgExport,renderMgmt,renderMgmtNow,mgClear,MG_TBD,mgFit,mgPrintPrep,mgPrintDone};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 
 
